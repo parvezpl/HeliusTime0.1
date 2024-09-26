@@ -1,0 +1,55 @@
+.workcomp-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: azure;
+
+}
+
+.work-nav {
+    display: flex;
+    width: 100%;
+    height: auto;
+    background-color: rgb(72, 71, 72);
+    font-size: 17px;
+    gap: 25px;
+}
+
+.work-nav div {
+    padding: 8px;
+    white-space: nowrap;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.work-nav-child {
+    text-decoration: none;
+    color:white;
+    padding: 13px;
+}
+
+
+
+
+.work-nav-child:hover  {
+    /* background-color: green; */
+    text-decoration: none;
+    background-color: black;
+    padding-inline: 13px;
+}
+
+.right-float {
+    display: flex;
+    cursor: pointer;
+    float: left;
+    position: fixed;
+    right: 0;
+    background-color: #000000;
+    border: solid;
+    margin: 2px;
+    width: 23px;
+    height: 28px;
+    align-items: center;
+    justify-content: center;
+
+}

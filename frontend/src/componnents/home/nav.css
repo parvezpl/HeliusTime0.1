@@ -1,0 +1,98 @@
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+
+.navi {
+    display: flex;
+    position: relative;
+    min-width: -webkit-fill-available;
+    top: 0;
+    left: 0;
+    border: 1px solid #000;
+    max-width: 1440px;
+    background-color: #373737;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 1rem;
+}
+
+.navi-name {
+    display: flex;
+    flex: 3;
+    text-decoration:none;
+}
+
+.navi-name span {
+    font-size: 21px;
+    color: #3cce4a;
+}
+
+.navi-end {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex: 3 3;
+}
+
+.navi-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 0px;
+}
+
+
+
+.navi-option-link {
+    color: #fff;
+    flex: 0 1 59px;
+    list-style: none;
+    padding: 1px 6px 1px 6px;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 769px) {
+    .navi-option {
+        display: flex;
+        position: fixed;
+        left: 0;
+        flex-direction: column;
+        top: 59px;
+        background-color: #4e4848;
+        height: auto;
+        gap: 0px; 
+        padding: 7px;
+        align-items: start;
+        border-radius: 3px
+    }
+    .navi-option li {
+        list-style: none;
+        flex: 0;
+        padding: 3px;
+        
+        
+    }
+
+    }
+
+.navi-login {
+    color: #3cce4a;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.navi-login :hover {
+    color: #b5d70a;
+    cursor: pointer;
+}
+
+/* ============================center box=====================================*/
+
+.center {
+    background-color: red;
+}

@@ -1,0 +1,166 @@
+.main-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container {
+    display: grid;
+    position: relative;
+
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    width: 569px;
+    height: 536px;
+}
+
+
+
+
+
+.box {
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+button:hover {
+    background-color: rgb(64, 63, 63);
+}
+
+.button-x {
+    /* display: none; */
+    background-color: rgb(180, 174, 174);
+    width: 98px;
+    height: 85px;
+    position: absolute;
+    z-index: 10;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.columns {
+    background-color: green;
+    width: 30px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.rows {
+    background-color: green;
+    height: 30px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.button-25-1 {
+    position: absolute;
+    height: 86%;
+    width: 85%;
+    border: solid;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 26px solid #09344b;
+}
+
+.button-25-2 {
+    position: absolute;
+    height: 66%;
+    width: 65%;
+    border: solid;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 26px solid #09344b;
+}
+
+.button-25-3 {
+    position: absolute;
+    height: 51%;
+    width: 51%;
+    border: solid;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 26px solid #09344b;
+}
+
+.button-25-3-1 {
+    background-color: #09344b;
+    width: 111%;
+    height: 11%;
+    position: absolute;
+    left: -186px;
+}
+
+.button-25-3-2 {
+    background-color: #09344b;
+    width: 111%;
+    height: 11%;
+    position: absolute;
+    right: -186px;
+}
+
+.button-25-3-3 {
+    background-color: #09344b;
+    height: 109%;
+    width: 11%;
+    position: absolute;
+    top: -186px;
+}
+
+.button-25-3-4 {
+    background-color: #09344b;
+    height: 109%;
+    width: 11%;
+    position: absolute;
+    bottom: -186px;
+}
+
+@media screen and (max-width: 769px) {
+    .main-container {
+        width: 569px;
+        height: 536px;
+        /* right: -141px; */
+    }
+
+    .button-25-3-1 {
+        left: -115px;
+        width: 108%;
+    height: 6%;
+    }
+
+    .button-25-3-2 {
+        background-color: #09344b;
+        width: 108%;
+        height: 6%;
+        position: absolute;
+        right: -115px
+    }
+
+    .button-25-3-3 {
+        background-color: #09344b;
+        height: 103%;
+        width: 11%;
+        position: absolute;
+        top: -162px;
+    }
+    .button-25-3-4 {
+        background-color: #09344b;
+    height: 100%;
+    width: 11%;
+    position: absolute;
+    bottom: -161px;
+    }
+
+    .button-25-1,.button-25-2, .button-25-3 {
+        border: 9px solid #09344b;
+    }
+
+}

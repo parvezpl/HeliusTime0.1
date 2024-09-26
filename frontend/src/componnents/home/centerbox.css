@@ -1,0 +1,133 @@
+.main-page-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.centerBox2 {
+    display: flex;
+    width: 1440px;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    margin: 9px  36px 0px 30px;
+}
+
+.main-leftbox {
+    flex: 1 1 50%;
+}
+
+.leftbox {
+    display: none;
+    /* width: 838px; */
+    /* height: 890px; */
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 464px;
+}
+
+.textbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: start;
+    /* background-color: #4e4848; */
+    font-family: var(--font-family);
+    gap: 4vw;
+    /* margin-top: 10rem; */
+    margin-left: 2rem;
+}
+
+.textbox1 {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 40px;
+    color: #3ebd44;
+}
+
+.textbox2 {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 37px;
+    color: #fff;
+}
+
+.textbox3 {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 24px;
+    color: #a4a4a4;
+}
+
+.buttonbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 5rem;
+}
+
+.link-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    color: white;
+    width: 17%;
+    height: 44px;
+    border-radius: 6px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 20px;
+    text-decoration:none;
+}
+
+
+.rightbox-main {
+    width: 327px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.rightbox {
+    display: flex;
+    justify-content: flex-end;
+    /* flex: 0 1 367px; */
+    height: 301px;
+    overflow: hidden;
+    border-radius: 7px;
+    box-shadow: 6px 6px 8px 0px #0830c6c4;
+}
+
+.img {
+    width: 100%;
+
+}
+
+.paragraph {
+    text-align: justify;
+}
+
+@media screen and (max-width: 769px){
+
+    .rightbox {
+        display: flex;
+        justify-content: flex-end;
+        flex: 0 1 377px;
+        height: 313px;
+        overflow: hidden;
+        border-radius: 7px;
+        box-shadow: 6px 6px 8px 0px #0830c6c4 ;
+    }
+    .img {
+        width: 100%;
+        height: auto;
+    }
+
+    .textbox {
+        margin: 0;
+    }
+}
+

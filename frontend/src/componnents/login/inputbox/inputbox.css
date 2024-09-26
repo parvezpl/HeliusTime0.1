@@ -1,0 +1,21 @@
+.inputbox {
+    border: 3px solid #0b0fff;
+    border-radius: 6px;
+    width: 90%;
+    height: 55px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background: #ebebeb;
+    font-size: 33px;
+}
+
+
+.loginbutton {
+    border-radius: 19px;
+    width: 155px;
+    height: 44px;
+    background: #ddcf12;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 27px;
+    color: #000;
+}

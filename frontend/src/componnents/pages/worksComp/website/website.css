@@ -1,0 +1,33 @@
+.main-website-container {
+    display: flex;
+}
+
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    width: 231px;
+    background-color: rgb(58 58 58);
+    height: 1196px;
+}
+
+.sidebar-container div {
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    margin: 15px;
+}
+
+.main-website-box {}
+
+.item-box {
+    padding: 11px;
+    cursor: pointer;
+}
+
+.item-box:hover {
+    font-size: 17px;
+    padding: 11px;
+    background-color: rgb(51, 50, 50);
+}
