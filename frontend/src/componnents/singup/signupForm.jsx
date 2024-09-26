@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './SignupForm.css';
 import axios, { Axios } from 'axios';
 
-const SignupForm = () => {
+export function SignupForm  () {
   const [formData, setFormData] = useState({
     name: '',
     mobile: '',
@@ -90,4 +90,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+

@@ -12,7 +12,9 @@ import { Tigrim } from './componnents/game/tigrim/tigrim.jsx'
 import { Website } from './componnents/pages/worksComp/website/website.jsx'
 import { Workscomp } from './componnents/pages/worksComp/workscomp.jsx'
 import LoginDetail from './componnents/home/logindetail.jsx'
-// import SignupForm from './componnents/singup/signupform.jsx'
+import { SignupForm } from './componnents/singup/SignupForm.jsx'
+
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,7 +27,7 @@ const router = createBrowserRouter(
           </>
         }>
           <Route path='login' element={<Login />}/>
-          {/* <Route path='signup' element={<SignupForm />}/> */}
+          <Route path='signup' element={<SignupForm />}/>
           
         </Route>
         <Route path='myworks' element={<Workscomp/>}>
