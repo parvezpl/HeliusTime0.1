@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './centerbox.css'
 import homeimg from './../../assets/home.jpg'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 export default function CenterBox({ onLoginClick }) {
     // const [isLoginVigible, setIsLoginVisible] = useState(false)
     const isLoginVigible = useSelector((state) => state.account.loginStatus)
@@ -43,6 +43,7 @@ export default function CenterBox({ onLoginClick }) {
                     </div>
                 </div>
             </div>
+            <Outlet/>
         </>
     )
 }
