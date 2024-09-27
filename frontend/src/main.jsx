@@ -19,11 +19,9 @@ import { SignupForm } from './componnents/singup/SignupsForm.jsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
       <Route  element={<App />}>
-        <Route path='/'  element={<CenterBox/>}>
-          <Route path='login' element={<Login />}/>
-          <Route path='signup' element={<SignupForm />}/>
-          <Route path='ss' element={<div>game</div>}/>
-        </Route>
+        <Route path='/'  element={<CenterBox/>}/>
+        <Route path='login' element={<Login />}/>
+        <Route path='signup' element={<SignupForm />}/>
         <Route path='myworks' element={<Workscomp/>}>
           <Route path='game' element={<div>game</div>}/>
           <Route path='tigrim' element={<Tigrim />}/>

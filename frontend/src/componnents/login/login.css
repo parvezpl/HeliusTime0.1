@@ -1,121 +1,104 @@
-.maincontainer {
-    display: flex;
-    position: absolute;
-    top: 16%;
-    min-width: -webkit-fill-available;
-    justify-content: center;
-
-}
-
-
-.login-box {
-    display: flex;
-    /* flex-wrap: wrap; */
-    flex: 0 2 792px;
-    margin-inline: 2vw;
-    position: relative;
-    justify-content: space-between;
-    justify-content: center;
-    align-items: center;
-    height: 581px;
-    box-shadow: -1px 1px 19px 12px rgba(191, 191, 191, 0.25);
-    background: #373737;
-    border-radius: 33px;
-}
-
-
-@media screen and (max-width: 900px) {
-    .inleftbox {
-      display: none;
-    }
-
-    .login-box {
-        flex: 0 2 316px;
-        height: auto;
-    }
-  }
-
-.inleftbox {
-    width: 83%;
-    flex: 0 1 533px;
-    height: 507px;
-    box-shadow: 0px 0px 29px 3px #373737;
-    margin-left: 7px;
-    /* background: url("./../../assets/login.jfif"); */
-
-}
-
-.inleftbox img {
-    width: inherit;
-    height: inherit;
-}
-
-
-
-
-.inrightbox {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.login-container {
     width: 100%;
-    height: 66%;
-    gap: 4vw;
-    /* background-color: red; */
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    inset: 10%;
+    height: fit-content;
 }
 
-.inrightbox Inputbox {
-    /* margin: 10px; */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.inputBox-acount-text {
-    display: flex;
-    gap: 56px;
-
-
+.form-group {
+    margin-bottom: 15px;
 }
 
-p, Link {
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 24px;
-    color: #FFF;
-    margin: -10px;
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
-.login-cencel {
-    display: flex;
-    position: absolute;
-    font-size: 42px;
-    color: red;
-    margin-left: 54rem;
-    height: 9%;
-    width: 9%;
-    border-radius: 45px;
-    justify-content: center;
-    align-items: center;
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-    border-color: white;
-    box-shadow: 0px 0px 4px #FFFBD7;
-    top: 0;
-    right: 0;
-
+    margin-top: 10px;
 }
 
-.login-with-google {
-
-    display: flex;
-    width: 69%;
-    font-size: 13px;
-    border: groove;
-    border-color: #c0c0f2;
-    height: 26%;
+.login-btn:hover {
+    background-color: #0056b3;
 }
 
-.login-with-google button {
-    font-weight: 700;
-    /* display: flex; */
-    flex: 1;
-    font-size: 25px;
-    color: #0003ac;
+.alt-login {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.alt-login p {
+    margin: 10px 0;
+}
+
+.google-btn,
+.github-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+}
+
+.google-btn {
+    background-color: #db4437;
+}
+
+.google-btn:hover {
+    background-color: #c23321;
+}
+
+.github-btn {
+    background-color: #333;
+}
+
+.github-btn:hover {
+    background-color: #24292e;
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
 }

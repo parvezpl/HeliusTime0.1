@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux'
 import { Link, Outlet } from 'react-router-dom'
 export default function CenterBox({ onLoginClick }) {
     // const [isLoginVigible, setIsLoginVisible] = useState(false)
-    const isLoginVigible = useSelector((state) => state.account.loginStatus)
+    // const isLoginVigible = useSelector((state) => state.account.loginStatus)
 
     return (
         <>
-            <div className='main-page-box' style={{ filter: isLoginVigible && "blur(20px)" }} >
+            <div className='main-page-box' >
                 <div className='centerBox2'>
                     <div className='main-leftbox'>
                         <div className='leftbox'>
