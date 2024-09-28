@@ -1,20 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './website.css'
-import { Outlet } from 'react-router-dom'
+import axios from 'axios';
 export function Website(props) {
     const [fetchDetail, setFetchDetail] = useState(null)
-    const sidebarstore = [
-        {
-            id: 1,
-            webName: "moveItem",
-            details: "this is test"
-        },
-        {
-            id: 2,
-            webName: "portfolio",
-            details: "this is test2"
+    const [data, setData] = useState([])
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get("/api/weblinks")
+            console.log(response)
+            setData(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
         }
-    ]
+    };
+
+    useEffect( ()=>{
+        fetchData()
+    },[])
 
     const clickhandler =(item)=>{
         setFetchDetail(item.details)
@@ -24,11 +27,11 @@ export function Website(props) {
             <div className='main-website-container'>
                 <div className='sidebar-container'>
                     <div>
-                        {sidebarstore.map((item) => <span key={item.id} className='item-box' onClick={()=>clickhandler(item)} >{item.webName}</span>)}
+                        {data.map((item) => <span key={item._id} className='item-box' onClick={()=>clickhandler(item)} >{item.links}</span>)}
                     </div>
                 </div>
                 <div className='main-website-box'>
-                    <div>{fetchDetail}   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis ipsam quia non earum suscipit autem! Maiores tenetur doloribus obcaecati hic quas incidunt, laudantium aliquid distinctio magnam modi necessitatibus quae ipsa.</div>
+                    <div>{fetchDetail}</div>
                 </div>
             </div>
         </>

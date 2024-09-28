@@ -1,9 +1,5 @@
 import React from 'react'
-import { Inputbox, LoginButton } from './inputbox/inputbox'
 import "./login.css"
-import loginphoto from './../../assets/login.jfif'
-import { useDispatch } from 'react-redux'
-import { loginFunc } from '../../reduxx/slices'
 import { Link } from 'react-router-dom'
 export function Login() {
 

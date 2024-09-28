@@ -1,11 +1,11 @@
 import React from 'react'
 
-export function Sidebar(props) {
+export function Admin(props) {
     
 
     return (
         <>
-            <div>this is side bar </div>
+            
         </>
     )
 }

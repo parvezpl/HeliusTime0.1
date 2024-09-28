@@ -17,7 +17,7 @@ export function Nav({onLoginClick}) {
                         <Link className='navi-option-link' to={'/'}>home</Link>
                         <Link className='navi-option-link' to={'/logindetail'}>about</Link>
                         <Link className='navi-option-link'>service</Link>
-                        <Link className='navi-option-link'>blog</Link>
+                        <Link className='navi-option-link' to={'/admin'}>admin</Link>
                         <Link className='navi-option-link'>contact</Link>
                     </ul>
                     <Link to={"/login"}
