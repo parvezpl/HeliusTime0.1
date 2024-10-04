@@ -22,7 +22,7 @@ export function SignupForm() {
   };
 
   const postDAta = async (data) => {
-    await axios.post('/api/createAccount', { name: data.name, contact: data.contact, password: data.password })
+    await axios.post('/api/createAccount', { name: data.name, contact: data.contact, username:data.name, password: data.password })
       .then((dataa) =>
         dispatch(loginFunc(true),
           navigate('/')

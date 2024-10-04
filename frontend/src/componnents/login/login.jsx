@@ -5,8 +5,8 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { loginFunc } from '../../reduxx/slices';
 export function Login() {
-    const dispatch =useDispatch()
-    const navigate =useNavigate()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         contact: '',
         password: ''
@@ -21,12 +21,13 @@ export function Login() {
 
     const postDAta = async (data) => {
 
-        await axios.post('/api/userlogin', { contact: data.contact, password: data.password })
-            .then((dataa) => { return dataa })
+        await axios.post('/api/userlogin', { username: data.contact, password: data.password })
+            .then((dataa) => {
+                dispatch(loginFunc(true))
+                navigate('/')
+            })
             .catch((error) => console.error(error));
-            dispatch(loginFunc(true))
-            navigate('/')
-            
+
     }
 
     const handleLogin = (e) => {

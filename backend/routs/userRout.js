@@ -21,8 +21,8 @@ userRouter.post('/createAccount', async (req, res)=>{
 
 userRouter.post('/userlogin', async (req, res) => {
     try {
-        const {contact, password} =req.body;
-        const user= await User.findOne({contact: contact}); // contact replay by username 
+        const {username, password} =req.body;
+        const user= await User.findOne({username: username}); // contact replay by username 
         if(!user || !(await user.comparePassword(password))){
             return res.status(401).json({error:"invalid username or password"})
         }
