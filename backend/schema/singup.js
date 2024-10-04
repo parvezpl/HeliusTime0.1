@@ -12,7 +12,12 @@ const singupSchema = new mongoose.Schema({
     email:{
         type: String,
         require: true
+    },
+    password:{
+        type: String,
+        require: true
     }
+
 })
 
 const Singup = new mongoose.model("Singup", singupSchema)

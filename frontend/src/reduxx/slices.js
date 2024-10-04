@@ -12,7 +12,6 @@ const accountState = createSlice({
     reducers:{
         loginFunc: (state, action)=>{
             state.loginStatus=action.payload
-            console.log(state.loginStatus)
         }
     }
 })

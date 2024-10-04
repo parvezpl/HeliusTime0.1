@@ -1,11 +1,13 @@
 const express = require('express')
 const Singup = require('../schema/singup')
-const singup_router = express.Router()
+const weblinks = require('../schema/weblinks')
+const post_router = express.Router()
+const {jwtAuthMiddleware, generateToken} = require('./../jwt')
 
-
-singup_router.post('/api/singups', async (req, res) => {
+post_router.post('/signup', async (req, res) => {
     try{
         const data = req.body
+        console.log(data)
         const newSingup= new Singup(data)
         const responce = await newSingup.save()
         res.status(200).json({responce})
@@ -14,7 +16,20 @@ singup_router.post('/api/singups', async (req, res) => {
     }
 })
 
+post_router.post('/weblinks', async (req, res)=>{
+    try {
+        const data =req.body
+        const newWebliks= new weblinks(data)
+        const responce = await newWebliks.save()
+        const token = generateToken(responce.username)
+        console.log(token)
+        res.status(200).json({responce: responce, token: token})
+    } catch (error) {
+        res.json({error})
+    }
+})
 
 
 
-module.exports = singup_router
+
+module.exports = post_router

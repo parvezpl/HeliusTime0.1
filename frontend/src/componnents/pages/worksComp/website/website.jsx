@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react'
 import './website.css'
 import axios from 'axios';
 export function Website(props) {
-    const [fetchDetail, setFetchDetail] = useState(null)
+    const [fetchDetail, setFetchDetail] = useState()
     const [data, setData] = useState([])
 
     const fetchData = async () => {
         try {
             const response = await axios.get("/api/weblinks")
-            console.log(response)
             setData(response.data);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -22,6 +21,7 @@ export function Website(props) {
     const clickhandler =(item)=>{
         setFetchDetail(item.details)
     }
+
     return (
         <>
             <div className='main-website-container'>

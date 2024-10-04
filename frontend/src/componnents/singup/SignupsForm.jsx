@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SignupForm.css';
 import axios, { Axios } from 'axios';
+import { useDispatch } from 'react-redux';
+import { loginFunc } from '../../reduxx/slices';
+import { useNavigate } from 'react-router-dom';
 
 export function SignupForm() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
     contact: '',
@@ -17,9 +22,11 @@ export function SignupForm() {
   };
 
   const postDAta = async (data) => {
-    console.log(data);
-    await axios.post('/api/singups', { name: data.name, mobile: data.mobile, email: data.email })
-      .then((dataa) => console.log(dataa))
+    await axios.post('/api/createAccount', { name: data.name, contact: data.contact, password: data.password })
+      .then((dataa) =>
+        dispatch(loginFunc(true),
+          navigate('/')
+        ))
       .catch((error) => console.error(error));
   }
   const [errorMessage, setErrorMessage] = useState('');
@@ -42,6 +49,7 @@ export function SignupForm() {
     const mobileRegex = /^\d{10}$/;
     return emailRegex.test(contact) || mobileRegex.test(contact);
   };
+
 
 
   return (

@@ -11,7 +11,7 @@ const LoginDetail = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("/api/singups")
+            const response = await axios.get("/api/singup")
             console.log(response)
             setData(response.data);
         } catch (error) {

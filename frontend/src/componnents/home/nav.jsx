@@ -1,12 +1,39 @@
 import React from 'react'
 import "./nav.css"
-import CenterBox from './center_box';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginFunc } from '../../reduxx/slices';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-export function Nav({onLoginClick}) {
-    const dispatch =useDispatch()
+export function Nav({ onLoginClick }) {
+    const dispatch = useDispatch()
+    const navigate =useNavigate()
+    const islogin = useSelector((state) => state.account.loginStatus)
+    const options = [
+        {
+            name: 'home',
+            to: '/'
+        }
+
+    ]
+
+    const loginhandler = (e) => {
+        e.preventDefault();
+        const status = e.target.getAttribute("value")
+        console.log(status)
+        if (status === "Logout") {
+                 axios.get('/api/logout')
+                    .then((dataa) => console.log("res",dataa))
+                    .catch((error) => console.error(error));
+            
+            dispatch(loginFunc(false))
+            navigate('/')
+        }
+        if (status == "Login") {
+            navigate('/login')
+        }
+
+    }
 
     return (
         <>
@@ -21,9 +48,10 @@ export function Nav({onLoginClick}) {
                         <Link className='navi-option-link'>contact</Link>
                     </ul>
                     <Link to={"/login"}
-                    className='navi-login'
-                    onClick={()=>dispatch(loginFunc(true))}
-                    ><span >Login</span>
+                        className='navi-login'
+                        onClick={loginhandler}
+                    >
+                        {islogin ? <span value="Logout" >Logout</span> : <span value="Login">Login</span>}
                     </Link>
                 </div>
             </div>

@@ -1,11 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./login.css"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { loginFunc } from '../../reduxx/slices';
 export function Login() {
+    const dispatch =useDispatch()
+    const navigate =useNavigate()
+    const [formData, setFormData] = useState({
+        contact: '',
+        password: ''
+    });
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const postDAta = async (data) => {
+
+        await axios.post('/api/userlogin', { contact: data.contact, password: data.password })
+            .then((dataa) => { return dataa })
+            .catch((error) => console.error(error));
+            dispatch(loginFunc(true))
+            navigate('/')
+            
+    }
 
     const handleLogin = (e) => {
         e.preventDefault();
-        console.log('Login form submitted');
+        postDAta(formData)
+        console.log('Login form submitted', formData);
         // Add login logic here
     };
 
@@ -24,12 +51,14 @@ export function Login() {
             <h2>Login</h2>
             <form onSubmit={handleLogin}>
                 <div className="form-group">
-                    <label htmlFor="username">Username:</label>
+                    <label htmlFor="contact">Username:</label>
                     <input
                         type="text"
-                        id="username"
-                        name="username"
+                        id="contact"
+                        name="contact"
                         placeholder="Enter your username"
+                        value={formData.contact}
+                        onChange={handleChange}
                         required
                     />
                 </div>
@@ -41,6 +70,8 @@ export function Login() {
                         id="password"
                         name="password"
                         placeholder="Enter your password"
+                        value={formData.password}
+                        onChange={handleChange}
                         required
                     />
                 </div>
