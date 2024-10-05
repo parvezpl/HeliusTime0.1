@@ -12,7 +12,7 @@ userRouter.post('/createAccount', async (req, res)=>{
         const responce = await newUser.save()
         const token = generateToken(responce.id) //contact replace by username 
         res.cookie("jwt",token)
-        res.status(200).json({responce: responce, token: token})
+        token ? res.json(true) : res.json(false)
     } catch (error) {
         res.json({"not gen":error})
     }

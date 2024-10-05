@@ -24,8 +24,9 @@ export function Login() {
         await axios.post('/api/userlogin', { username: data.contact, password: data.password })
             .then((res) => {
                 console.log(res);
-               if(res.data===true) return dispatch(loginFunc(true))
-                navigate('/')
+               if(res.data===false) return "not login successful"
+               dispatch(loginFunc(true))
+               navigate('/')
             })
             .catch((error) => console.error(error));
 

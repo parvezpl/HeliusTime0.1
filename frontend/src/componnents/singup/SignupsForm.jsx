@@ -23,10 +23,12 @@ export function SignupForm() {
 
   const postDAta = async (data) => {
     await axios.post('/api/createAccount', { name: data.name, contact: data.contact, username:data.name, password: data.password })
-      .then((dataa) =>
-        dispatch(loginFunc(true),
-          navigate('/')
-        ))
+      .then((res) =>{
+        if(res.data===false) return "not singup successful"
+        dispatch(loginFunc(true))
+        navigate('/')
+      }
+        )
       .catch((error) => console.error(error));
   }
   const [errorMessage, setErrorMessage] = useState('');
