@@ -22,8 +22,9 @@ export function Login() {
     const postDAta = async (data) => {
 
         await axios.post('/api/userlogin', { username: data.contact, password: data.password })
-            .then((dataa) => {
-                dispatch(loginFunc(true))
+            .then((res) => {
+                console.log(res);
+               if(res.data===true) return dispatch(loginFunc(true))
                 navigate('/')
             })
             .catch((error) => console.error(error));

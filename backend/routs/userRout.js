@@ -32,7 +32,7 @@ userRouter.post('/userlogin', async (req, res) => {
         }
         const token = generateToken(payload)
         res.cookie("jwt",token)
-        res.json({token})
+        token ? res.json(true) : res.json(false)
         console.log("login successful")
     } catch(err){
         res.status(500).json({error:"internal server erro"})

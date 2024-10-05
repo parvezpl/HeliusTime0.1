@@ -6,8 +6,8 @@ const mongoURL =process.env.HELIUSTIMEDB_URL
 // const mongoURL ='mongodb://localhost:27017/heliustimedb'
 
 mongoose.connect(mongoURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
 })
 
 const db = mongoose.connection
