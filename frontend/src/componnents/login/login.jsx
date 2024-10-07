@@ -24,9 +24,11 @@ export function Login() {
         await axios.post('/api/userlogin', { username: data.contact, password: data.password })
             .then((res) => {
                 console.log(res);
-               if(res.data===false) return "not login successful"
-               dispatch(loginFunc(true))
-               navigate('/')
+                const username =res.data.name
+                localStorage.setItem("user", username)
+                if (res.data === false) return "not login successful"
+                dispatch(loginFunc(true))
+                navigate('/')
             })
             .catch((error) => console.error(error));
 
@@ -35,7 +37,6 @@ export function Login() {
     const handleLogin = (e) => {
         e.preventDefault();
         postDAta(formData)
-        console.log('Login form submitted', formData);
         // Add login logic here
     };
 

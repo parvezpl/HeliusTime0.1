@@ -1,35 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./nav.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { loginFunc } from '../../reduxx/slices';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export function Nav({ onLoginClick }) {
+export function Nav() {
+
     const dispatch = useDispatch()
-    const navigate =useNavigate()
+    const navigate = useNavigate()
     const islogin = useSelector((state) => state.account.loginStatus)
+    const [username, setUsername] = useState("PARVEZ ALAM")
+     const user = localStorage.getItem("user")
+
     const options = [
         {
-            name: 'home',
+            names: 'home',
             to: '/'
         }
-
     ]
 
-    const loginhandler = (e) => {
+    const loginhandler = async (e) => {
         e.preventDefault();
         const status = e.target.getAttribute("value")
         console.log(status)
         if (status === "Logout") {
-                 axios.get('/api/logout')
-                    .then((dataa) => console.log("res",dataa))
-                    .catch((error) => console.error(error));
-            
-            dispatch(loginFunc(false))
-            navigate('/')
+            await axios.get('/api/logout')
+                .then((res) => {
+                
+                    dispatch(loginFunc(false))
+                    localStorage.setItem("user","parvez alam")
+                    navigate('/')
+
+                })
+                .catch((error) => console.error(error));
+            setUsername("PARVEZ ALAM")
         }
         if (status == "Login") {
+            setUsername(name)
             navigate('/login')
         }
 
@@ -38,7 +46,7 @@ export function Nav({ onLoginClick }) {
     return (
         <>
             <div className='navi'>
-                <Link to={"/"} className='navi-name'><span>Parvez Alam</span></Link>
+                <Link to={"/"} className='navi-name'><span>{user}</span></Link>
                 <div className='navi-end'>
                     <ul className='navi-option'>
                         <Link className='navi-option-link' to={'/'}>home</Link>

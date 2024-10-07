@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './website.css'
 import axios from 'axios';
+import EntryForm from './EntryForm ';
 export function Website(props) {
     const [fetchDetail, setFetchDetail] = useState()
     const [data, setData] = useState([])
@@ -14,9 +15,10 @@ export function Website(props) {
         }
     };
 
+    const updates = localStorage.getItem("update")
     useEffect( ()=>{
         fetchData()
-    },[])
+    },[updates])
 
     const clickhandler =(item)=>{
         setFetchDetail(item.details)
@@ -31,6 +33,9 @@ export function Website(props) {
                     </div>
                 </div>
                 <div className='main-website-box'>
+                    <div>
+                        <EntryForm/>
+                    </div>
                     <div>{fetchDetail}</div>
                 </div>
             </div>

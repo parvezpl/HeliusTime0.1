@@ -21,8 +21,7 @@ post_router.post('/weblinks', async (req, res)=>{
         const data =req.body
         const newWebliks= new weblinks(data)
         const responce = await newWebliks.save()
-        const token = generateToken(responce.username)
-        console.log(token)
+        localStorage.setItem("update", true)
         res.status(200).json({responce: responce, token: token})
     } catch (error) {
         res.json({error})

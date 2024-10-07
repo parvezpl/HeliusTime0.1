@@ -8,7 +8,6 @@ const jwtAuthMiddleware = (req, res, next) => {
     // const token = req.headers.authorization.split(' ')[1];
     // const token = res.cookie("token")
 
-
     const tokenData = req.headers.cookie
     if (!tokenData) return res.status(401).json({ error:'not token' });
     const token = tokenData.split("=")[1]
@@ -25,7 +24,7 @@ const jwtAuthMiddleware = (req, res, next) => {
 
 
 const generateToken =(id)=>{
-    return jwt.sign({id}, process.env.JWT_SECRET, {expiresIn:300000})
+    return jwt.sign({...id}, process.env.JWT_SECRET, {expiresIn:300000})
 }
 
 module.exports ={jwtAuthMiddleware, generateToken}

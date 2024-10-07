@@ -12,7 +12,7 @@ userRouter.post('/createAccount', async (req, res)=>{
         const responce = await newUser.save()
         const token = generateToken(responce.id) //contact replace by username 
         res.cookie("jwt",token)
-        token ? res.json(true) : res.json(false)
+        token ? res.json(token) : res.json(false)
     } catch (error) {
         res.json({"not gen":error})
     }
@@ -30,9 +30,10 @@ userRouter.post('/userlogin', async (req, res) => {
             id : user.id,
             name:user.name,
         }
+        
         const token = generateToken(payload)
         res.cookie("jwt",token)
-        token ? res.json(true) : res.json(false)
+        token ? res.json(payload) : res.json(false)
         console.log("login successful")
     } catch(err){
         res.status(500).json({error:"internal server erro"})
@@ -60,9 +61,12 @@ userRouter.get('/getuser',jwtAuthMiddleware, async (req, res) => {
 })
 
 userRouter.get('/token',jwtAuthMiddleware, async (req, res) => {
-    const { headers: { cookie } } = req;
-    if (cookie) return res.send(true)
-    res.send(false)
+    // const { headers: { cookie } } = req;
+    const userData = req.user
+    console.log(userData)
+    // if (cookie) return res.send(userData)
+    // res.send(false)
+    res.json(userData)
 })
 
 

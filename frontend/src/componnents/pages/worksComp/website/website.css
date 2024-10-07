@@ -19,7 +19,10 @@
     margin: 15px;
 }
 
-.main-website-box {}
+.main-website-box {
+    
+    width: 100%;
+}
 
 .item-box {
     padding: 11px;
