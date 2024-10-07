@@ -51,7 +51,7 @@ const EntryForm = () => {
 
     return (
         <div className="entry-form-container">
-            <h2>Entry Form</h2>
+            <h2>Entry Form add data</h2>
             <form>
                 <div className="form-row">
                     <label>Links:</label>
