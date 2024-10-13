@@ -3,7 +3,8 @@ require('dotenv').config()
 const mongoose = require('mongoose');
 
 const mongoURL =process.env.HELIUSTIMEDB_URL
-// const mongoURL ='mongodb://localhost:27017/heliustimedb'
+// const mongoURL ='mongodb://127.0.0.1:27017/heliustimedb'
+
 
 mongoose.connect(mongoURL, {
     // useNewUrlParser: true,

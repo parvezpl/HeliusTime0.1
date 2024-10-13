@@ -21,11 +21,13 @@ const EntryForm = () => {
     };
 
     const postDAta = async (data) => {
-        console.log("Form Data :", data);
+        // console.log("Form Data :", data);
         await axios.post('/api/weblinks', { links: data.links, details: data.details })
             .then((res) => {
-                console.log(res);
-                setFormData("")
+                setFormData({
+                    links: "",
+                    details: ""
+                })
             }
             )
             .catch((error) => console.error(error));
@@ -36,23 +38,23 @@ const EntryForm = () => {
     // Handle form submission (for Submit button)
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form Data Submitted:", formData);
         postDAta(formData)
-        // Add further submit logic here, such as an API call
+        localStorage.setItem('update', true)
         setIsEditing(false); // Disable editing after submit
     };
 
     // Handle form update (for Update button)
     const handleUpdate = (e) => {
         e.preventDefault();
-        console.log("Form Data Updated:", formData);
+        // console.log("Form Data Updated:", formData);
+
         setIsEditing(true); // Enable editing when updating
     };
 
     return (
         <div className="entry-form-container">
             <h2>Entry Form add data</h2>
-            <form>
+            <form className="main-form">
                 <div className="form-row">
                     <label>Links:</label>
                     <input
@@ -68,7 +70,7 @@ const EntryForm = () => {
                     <input
                         type="text"
                         name="details"
-                        value={formData.title}
+                        value={formData.details}
                         onChange={handleChange}
                     // disabled={!isEditing && formData.details !== ""}
                     />
