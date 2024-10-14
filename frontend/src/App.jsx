@@ -8,29 +8,31 @@ import { loginFunc } from './reduxx/slices';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const dispatch =useDispatch()
-  
-  
-  const isloginCheck= async()=>{
-    const res= await axios.get('/api/token')
-    localStorage.setItem("user",res.data.name)
-    if (res.data) {
-      dispatch(loginFunc(true))
-    }else{
-      localStorage.setItem("user","parvez alam")
-      dispatch(loginFunc(false))
+  const dispatch = useDispatch()
+
+
+  const isloginCheck = async () => {
+    if(localStorage.getItem("user")) {
+      await axios.get('/api/token').then((res) => {
+        console.log(res)
+        dispatch(loginFunc(true))
+        localStorage.setItem("user", res.data.name)
+      })
     }
   }
 
-  useEffect(()=>{
+
+
+  useEffect(() => {
     isloginCheck()
-  },[])
+  }, [])
+
 
 
   return (
     <>
-      <Nav/>
-      <Outlet/>
+      <Nav />
+      <Outlet />
     </>
   )
 }

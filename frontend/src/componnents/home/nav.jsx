@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import "./nav.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { loginFunc } from '../../reduxx/slices';
@@ -6,12 +6,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export function Nav() {
-
+    const [optionStatus, setOptionStatus] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const islogin = useSelector((state) => state.account.loginStatus)
-    const [username, setUsername] = useState("PARVEZ ALAM")
-     const user = localStorage.getItem("user")
+    const user = localStorage.getItem("user")
+
+
 
     const options = [
         {
@@ -27,17 +28,14 @@ export function Nav() {
         if (status === "Logout") {
             await axios.get('/api/logout')
                 .then((res) => {
-                
                     dispatch(loginFunc(false))
-                    localStorage.setItem("user","parvez alam")
+                    localStorage.removeItem("user")
                     navigate('/')
 
                 })
                 .catch((error) => console.error(error));
-            setUsername("PARVEZ ALAM")
         }
         if (status == "Login") {
-            setUsername(name)
             navigate('/login')
         }
 
@@ -46,14 +44,21 @@ export function Nav() {
     return (
         <>
             <div className='navi'>
-                <Link to={"/"} className='navi-name'><span>{user}</span></Link>
+                <Link to={"/"} className='navi-name'><span>{user ? user : "PARVEZ ALAM"}</span></Link>
                 <div className='navi-end'>
                     <ul className='navi-option'>
-                        <Link className='navi-option-link' to={'/'}>home</Link>
-                        <Link className='navi-option-link' to={'/logindetail'}>about</Link>
-                        <Link className='navi-option-link'>service</Link>
-                        <Link className='navi-option-link' to={'/admin'}>admin</Link>
-                        <Link className='navi-option-link'>contact</Link>
+                        <div className='switch'
+                        onClick={()=>setOptionStatus((prev)=>!prev)}
+                        >=</div>
+                        <div className='navi-option-link'
+                        style={{display: optionStatus ? "none" : "flex"}}
+                        >
+                            <Link className='navi-option-link' to={'/'}>home</Link>
+                            <Link className='navi-option-link' to={'/logindetail'}>about</Link>
+                            <Link className='navi-option-link'>service</Link>
+                            <Link className='navi-option-link' to={'/admin'}>admin</Link>
+                            <Link className='navi-option-link'>contact</Link>
+                        </div>
                     </ul>
                     <Link to={"/login"}
                         className='navi-login'

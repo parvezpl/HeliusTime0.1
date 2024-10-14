@@ -8,19 +8,20 @@ export function Website(props) {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("/api/weblinks")
-            setData(response.data);
+            await axios.get("/api/weblinks").then((res) => {
+                setData(res.data);
+            })
         } catch (error) {
-            console.error('Error fetching data:', error);
+            console.error("plz login first");
         }
     };
 
     const updates = localStorage.getItem("update")
-    useEffect( ()=>{
+    useEffect(() => {
         fetchData()
-    },[updates])
+    }, [updates])
 
-    const clickhandler =(item)=>{
+    const clickhandler = (item) => {
         setFetchDetail(item.details)
     }
 
@@ -29,12 +30,12 @@ export function Website(props) {
             <div className='main-website-container'>
                 <div className='sidebar-container'>
                     <div>
-                        {linksdata?.map((item) => <span key={item._id} className='item-box' onClick={()=>clickhandler(item)} >{item.links}</span>)}
+                        {linksdata?.map((item) => <span key={item._id} className='item-box' onClick={() => clickhandler(item)} >{item.links}</span>)}
                     </div>
                 </div>
                 <div className='main-website-box'>
                     <div>
-                        <EntryForm/>
+                        <EntryForm />
                     </div>
                     <div>{fetchDetail}</div>
                 </div>

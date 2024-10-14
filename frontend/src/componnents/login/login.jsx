@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { loginFunc } from '../../reduxx/slices';
 export function Login() {
+    const [loding, setLoding] = useState(false)
+    const [loginError, setLoginError] = useState(null)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
@@ -19,27 +21,25 @@ export function Login() {
         });
     };
 
-    const postDAta = async (data) => {
 
-        await axios.post('/api/userlogin', { username: data.contact, password: data.password })
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        setLoding(true)
+        await axios.post('/api/userlogin', { username: formData.contact, password: formData.password })
             .then((res) => {
-                console.log(res);
-                const username =res.data.name
+                const username = res.data.name
                 localStorage.setItem("user", username)
-                if (res.data === false) return "not login successful"
                 dispatch(loginFunc(true))
                 navigate('/')
+                setLoding(false)
+                setLoginError(null)
             })
-            .catch((error) => console.error(error));
-
-    }
-
-    const handleLogin = (e) => {
-        e.preventDefault();
-        postDAta(formData)
-        // Add login logic here
+            .catch((error) => {
+                console.error(error.response.data.error),
+                    setLoding(false)
+                setLoginError(error.response.data.error)
+            });
     };
-
     const handleGoogleLogin = () => {
         console.log('Login with Google');
         // Add Google login logic here
@@ -52,51 +52,65 @@ export function Login() {
 
     return (
         <div className="login-container">
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
-                <div className="form-group">
-                    <label htmlFor="contact">Username:</label>
-                    <input
-                        type="text"
-                        id="contact"
-                        name="contact"
-                        placeholder="Enter your username"
-                        value={formData.contact}
-                        onChange={handleChange}
-                        required
-                    />
+            {loding && <p style={{
+                color: "green",
+            }}>LOADING PLZ WAIT..........</p>}
+            <div
+                style={{ display: loding && "none" }}
+            >
+                <h2>Login</h2>
+                {
+                    loginError && <div
+                        style={{
+                            color: "red",
+                            "font-size": "larger"
+                        }}
+                    >{loginError}</div>
+                }
+                <form onSubmit={handleLogin}>
+                    <div className="form-group">
+                        <label htmlFor="contact">Username:</label>
+                        <input
+                            type="text"
+                            id="contact"
+                            name="contact"
+                            placeholder="Enter your username"
+                            value={formData.contact}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="password">Password:</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+
+                    <button type="submit" className="login-btn">Login</button>
+
+                    <div className="alt-login">
+                        <p>Or login with</p>
+                        <button type="button" className="google-btn" onClick={handleGoogleLogin}>
+                            Login with Google
+                        </button>
+                        <button type="button" className="github-btn" onClick={handleGithubLogin}>
+                            Login with GitHub
+                        </button>
+                    </div>
+                </form>
+                <div className="login-footer">
+                    <a href="#forgot-password">Forgot Password?</a>
+                    <span> | </span>
+                    <Link to={'/signup'}>Sign Up</Link>
                 </div>
-
-                <div className="form-group">
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Enter your password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-
-                <button type="submit" className="login-btn">Login</button>
-
-                <div className="alt-login">
-                    <p>Or login with</p>
-                    <button type="button" className="google-btn" onClick={handleGoogleLogin}>
-                        Login with Google
-                    </button>
-                    <button type="button" className="github-btn" onClick={handleGithubLogin}>
-                        Login with GitHub
-                    </button>
-                </div>
-            </form>
-
-            <div className="login-footer">
-                <a href="#forgot-password">Forgot Password?</a>
-                <span> | </span>
-                <Link to={'/signup'}>Sign Up</Link>
             </div>
         </div>
     );
