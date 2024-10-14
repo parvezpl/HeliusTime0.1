@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const postRouter = require('./routs/postrouts');
 const getRouter = require('./routs/getrouts');
 const userRouter = require('./routs/userRout');
+const getRout = require('./routs/getRout');
 
 const db = require('./db');
 const passport = require('./auth');
@@ -19,6 +20,7 @@ app.use('/api', postRouter)
 const localAuth = passport.authenticate('local', { session: false })
 
 app.use('/api', getRouter)
+app.use('/api', getRout)
 app.use('/api', userRouter)
 
 
