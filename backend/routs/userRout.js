@@ -52,11 +52,10 @@ userRouter.get('/logout', async (req, res) => {
 })
 
 
-userRouter.get('/getuser',jwtAuthMiddleware, async (req, res) => {
+userRouter.get('/getuser', async (req, res) => {
     const userData = req.user
     console.log(userData)
-    const userId = userData.id.id;
-    const data = await User.findById(userId)
+    const data = await User.find()
     res.status(200).json(data)
 })
 
