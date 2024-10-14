@@ -21,12 +21,18 @@ export function Login() {
         });
     };
 
-
+    const delay = async (ms) => {
+        return new Promise((resolve) => 
+            setTimeout(resolve, ms));
+    };
+ 
     const handleLogin = async (e) => {
         e.preventDefault();
         setLoding(true)
         await axios.post('/api/userlogin', { username: formData.contact, password: formData.password })
-            .then((res) => {
+            .then(async (res) => {
+                // await delay(5000)
+                console.log("login")
                 const username = res.data.name
                 localStorage.setItem("user", username)
                 dispatch(loginFunc(true))

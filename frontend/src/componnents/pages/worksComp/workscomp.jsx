@@ -16,6 +16,7 @@ export function Workscomp(props) {
     {
         name: "other work",
         className: "work-nav-child",
+        to :"test"
     },
 
     {

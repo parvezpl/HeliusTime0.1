@@ -14,14 +14,11 @@ function App() {
   const isloginCheck = async () => {
     if(localStorage.getItem("user")) {
       await axios.get('/api/token').then((res) => {
-        console.log(res)
         dispatch(loginFunc(true))
         localStorage.setItem("user", res.data.name)
       })
     }
   }
-
-
 
   useEffect(() => {
     isloginCheck()

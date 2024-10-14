@@ -16,6 +16,8 @@ import MainAdmin from './componnents/adminpanel/MainAdmin.jsx'
 import Dashboard from './componnents/adminpanel/Dashboard.jsx'
 import Users from './componnents/adminpanel/Users.jsx'
 import Settings from './componnents/adminpanel/Settings.jsx'
+import {Otherwork} from './componnents/pages/worksComp/otherwork/otherwork.jsx'
+
 
 
 
@@ -36,6 +38,7 @@ const router = createBrowserRouter(
         <Route path='game' element={<div>game</div>} />
         <Route path='tigrim' element={<Tigrim />} />
         <Route path='website' element={<Website />} />
+        <Route path='test' element={<Otherwork />} />
       </Route>
       <Route path='logindetail' element={<LoginDetail />}></Route>
     </Route>
