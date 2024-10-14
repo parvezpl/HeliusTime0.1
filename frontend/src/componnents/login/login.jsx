@@ -32,7 +32,7 @@ export function Login() {
         await axios.post('/api/userlogin', { username: formData.contact, password: formData.password })
             .then(async (res) => {
                 // await delay(5000)
-                console.log("login")
+                console.log("login", res)
                 const username = res.data.name
                 localStorage.setItem("user", username)
                 dispatch(loginFunc(true))
