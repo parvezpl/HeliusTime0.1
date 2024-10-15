@@ -23,7 +23,9 @@ const corsOtions = {
 
 app.use(bodyParser.json());
 app.use(bodyParser.text());
-app.use(cors(corsOtions))
+app.use(cors(
+    // corsOtions
+))
 // const localAuth = passport.authenticate('local', { session: false })
 // app.use(passport.initialize());
 
