@@ -30,7 +30,7 @@ export function Website(props) {
             <div className='main-website-container'>
                 <div className='sidebar-container'>
                     <div>
-                        {linksdata?.map((item) => <span key={item._id} className='item-box' onClick={() => clickhandler(item)} >{item.links}</span>)}
+                        {linksdata?.map((item, index) => <span key={index} className='item-box' onClick={() => clickhandler(item)} >{item.links}</span>)}
                     </div>
                 </div>
                 <div className='main-website-box'>
