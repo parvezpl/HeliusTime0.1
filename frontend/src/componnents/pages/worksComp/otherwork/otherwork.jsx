@@ -15,8 +15,8 @@ export function Otherwork() {
   return (
     <div>
       {
-        userData.map((item) =>
-          <div style={{ "display": "flex", "margin": "10px", gap: "300px" }}>
+        userData?.map((item, index) =>
+          <div key={index} style={{ "display": "flex", "margin": "10px", gap: "300px" }}>
             <p>{item.name}</p>
             <p>{item._id}</p>
           </div>
