@@ -1,7 +1,8 @@
 import axios from 'axios';
+// require('dotenv').config()
 
+const API_URL = 'https://heliustimebackend.onrender.com'; // Replace with your backend URL
 
-const API_URL = import.meta.env.VITE_API_URL // Replace with your backend URL
 export const fetchData = async () => {
   try {
     const response = await axios.get(`${API_URL}/api`); // Replace with your endpoint
