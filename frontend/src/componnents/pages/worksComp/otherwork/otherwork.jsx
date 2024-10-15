@@ -7,7 +7,7 @@ export function Otherwork() {
 
   const getData = async () => {
     try {
-      await axios.get("/api/getuser")
+      await axios.get("/api")
         .then((res) => {
           console.log(res.data)
           setUserData(res.data)
