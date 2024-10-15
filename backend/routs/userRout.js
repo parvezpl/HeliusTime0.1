@@ -33,7 +33,7 @@ userRouter.post('/userlogin', async (req, res) => {
         
         const token = generateToken(payload)
         res.cookie("jwt",token)
-        token ? res.json(payload) : res.json(false)
+        token ? res.json({payload,token}) : res.json(false)
         console.log("login successful")
     } catch(err){
         res.status(500).json({error:"internal server erro"})
@@ -60,11 +60,10 @@ userRouter.get('/getuser', async (req, res) => {
 })
 
 userRouter.get('/token',jwtAuthMiddleware, async (req, res) => {
+    console.log("hell")
     // const { headers: { cookie } } = req;
     const userData = req.user
     console.log("token", userData)
-    // if (cookie) return res.send(userData)
-    // res.send(false)
     res.json(userData)
 })
 

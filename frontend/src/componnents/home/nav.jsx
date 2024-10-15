@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginFunc } from '../../reduxx/slices';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { logout } from '../../api/apiCall';
 
 export function Nav() {
     const [optionStatus, setOptionStatus] = useState(false)
@@ -26,7 +27,7 @@ export function Nav() {
         const status = e.target.getAttribute("value")
         console.log(status)
         if (status === "Logout") {
-            await axios.get('/api/logout')
+            await logout()
                 .then((res) => {
                     dispatch(loginFunc(false))
                     localStorage.removeItem("user")

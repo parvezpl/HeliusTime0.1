@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-// const API_URL = import.meta.env.VITE_API_URL // Replace with your backend URL
+const API_URL = import.meta.env.VITE_API_URL // Replace with your backend URL
 // const API_URL = "http://localhost:3000"
 
 export const fetchData = async () => {

@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { loginFunc } from '../../reduxx/slices';
+import { userLogin } from '../../api/apiCall';
 export function Login() {
     const [loding, setLoding] = useState(false)
     const [loginError, setLoginError] = useState(null)
@@ -21,19 +22,13 @@ export function Login() {
         });
     };
 
-    const delay = async (ms) => {
-        return new Promise((resolve) => 
-            setTimeout(resolve, ms));
-    };
- 
     const handleLogin = async (e) => {
         e.preventDefault();
         setLoding(true)
-        await axios.post('/api/userlogin', { username: formData.contact, password: formData.password })
+        await userLogin(formData)
             .then(async (res) => {
-                // await delay(5000)
-                console.log("login", res)
-                const username = res.data.name
+                console.log("login", res.payload.name)
+                const username = res.payload.name
                 localStorage.setItem("user", username)
                 dispatch(loginFunc(true))
                 navigate('/')
@@ -41,7 +36,7 @@ export function Login() {
                 setLoginError(null)
             })
             .catch((error) => {
-                console.error(error.response.data.error),
+                console.error(error.response.error),
                     setLoding(false)
                 setLoginError(error.response.data.error)
             });
@@ -69,7 +64,6 @@ export function Login() {
                     loginError && <div
                         style={{
                             color: "red",
-                            "font-size": "larger"
                         }}
                     >{loginError}</div>
                 }

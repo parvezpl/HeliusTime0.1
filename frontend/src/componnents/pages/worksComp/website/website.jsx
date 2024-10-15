@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react'
 import './website.css'
 import axios from 'axios';
 import EntryForm from './EntryForm ';
+import { weblinksData } from '../../../../api/apiCall';
 export function Website(props) {
     const [fetchDetail, setFetchDetail] = useState()
     const [linksdata, setData] = useState([])
 
     const fetchData = async () => {
         try {
-            await axios.get("/api/weblinks").then((res) => {
-                setData(res.data);
+            await weblinksData().then((res) => {
+                setData(res);
             })
         } catch (error) {
             console.error("plz login first");

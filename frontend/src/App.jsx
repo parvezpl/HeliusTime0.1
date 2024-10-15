@@ -13,10 +13,12 @@ function App() {
 
 
   const isloginCheck = async () => {
-    if(localStorage.getItem("user")) {
-      await tokenverifie.then((res) => {
+    if (localStorage.getItem("user")) {
+      await tokenverifie().then((res) => {
+        // console.log(res)
         dispatch(loginFunc(true))
-        localStorage.setItem("user", res.data.name)
+        localStorage.setItem("user", res.name)
+
       })
     }
   }

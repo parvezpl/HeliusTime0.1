@@ -9,25 +9,24 @@ const userRouter = require('./routs/userRout');
 const getRout = require('./routs/getRout');
 
 const db = require('./db');
-// const passport = require('./auth');
 const cors = require("cors")
 
+// const passport = require('./auth');
+// const localAuth = passport.authenticate('local', { session: false })
+// app.use(passport.initialize());
 
-const corsOtions = {
-    origin:"https://heliustime.onrender.com",
-    // origin:"http://localhost:5173/",
-    methods:"GET, POST, PUT, DELETE, PATCH, HEAD",
-    credentials:true
-}
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.text());
-app.use(cors(
-    // corsOtions
+app.use(cors({
+    credentials: true,
+    // origin: 'http://localhost:5173',
+        origin:"https://heliustime.onrender.com",
+    methods:"GET, POST, PUT, DELETE, PATCH, HEAD"
+
+}
 ))
-// const localAuth = passport.authenticate('local', { session: false })
-// app.use(passport.initialize());
 
 app.use('/api', postRouter)
 app.use('/api', getRouter)
@@ -42,9 +41,6 @@ app.get('/api', (req, res) => {
 })
 
 
-
-
-// Starting the server
 app.listen(port, () => {
-    console.log(`Server is listening at http://localhost:${port}`);
+    console.log(`main Server is listening at http://localhost:${port}`);
 });
