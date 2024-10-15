@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 export function Otherwork() {
   const [userData, setUserData] = useState([])
 
-  const getData = async ()=>{
+  const getData = async () => {
     try {
       await axios.get("/api/getuser")
         .then((res) => {
@@ -13,15 +13,14 @@ export function Otherwork() {
           setUserData(res.data)
         })
     } catch (error) {
-      console.log("catch", error)
+      console.log("catch erro")
     }
-
   }
 
   useEffect(() => {
     getData()
   }, [])
- console.log(userData)
+  //  console.log(userData)
   return (
     <div >
       {

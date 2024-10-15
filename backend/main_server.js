@@ -14,7 +14,8 @@ const cors = require("cors")
 
 
 const corsOtions = {
-    origin:"https://heliustimebackend.onrender.com",
+    // origin:"https://heliustime.onrender.com",
+    origin:"http://localhost:5173/",
     methods:"GET, POST, PUT, DELETE, PATCH, HEAD",
     credentials:true
 }
@@ -34,7 +35,7 @@ app.use('/api', userRouter)
 
 
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.json("this is home page")
 })
 

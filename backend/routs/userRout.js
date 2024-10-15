@@ -54,7 +54,7 @@ userRouter.get('/logout', async (req, res) => {
 
 userRouter.get('/getuser', async (req, res) => {
     const userData = req.user
-    console.log(userData)
+    console.log("userdata",userData)
     const data = await User.find()
     res.status(200).json(data)
 })
@@ -62,7 +62,7 @@ userRouter.get('/getuser', async (req, res) => {
 userRouter.get('/token',jwtAuthMiddleware, async (req, res) => {
     // const { headers: { cookie } } = req;
     const userData = req.user
-    console.log(userData)
+    console.log("token", userData)
     // if (cookie) return res.send(userData)
     // res.send(false)
     res.json(userData)

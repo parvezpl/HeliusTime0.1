@@ -39,7 +39,7 @@ export function Workscomp(props) {
                                     className={li.className}
                                     to={li.to}
                                 >
-                                    {li.name}{console.log(li.styles)}
+                                    {li.name}
                                 </Link>
                             })
                         }
