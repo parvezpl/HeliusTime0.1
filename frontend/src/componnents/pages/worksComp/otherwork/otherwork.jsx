@@ -11,7 +11,7 @@ export function Otherwork() {
         setUserData(res.data)
       })
   }, [])
-
+ console.log(userData)
   return (
     <div>
       {
