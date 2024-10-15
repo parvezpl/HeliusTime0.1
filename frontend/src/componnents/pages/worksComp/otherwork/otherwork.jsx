@@ -1,33 +1,17 @@
 
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { fetchData } from './apidata'
 
 export function Otherwork() {
   const [userData, setUserData] = useState([])
 
-  const getData = async () => {
-    // try {
-    //   await axios.get("/api/getuser")
-    //     .then((res) => {
-    //       console.log(res.data)
-    //       setUserData(res.data)
-    //     })
-    // } catch (error) {
-    //   console.log("catch erro")
-    // }
-  }
-
-  useEffect(() => {
-    getData()
-  }, [])
-  //  console.log(userData)
-
-  const clickhandle = async ()=>{
-    await axios.get("/api/getuser")
-    .then((res)=>{
-      console.log(res.data)
-    })
+   const clickhandle = async ()=>{
+    
+    const res= await fetchData()
+    console.log(res)
     console.log("hell")
+ 
   }
   return (
     <div >
