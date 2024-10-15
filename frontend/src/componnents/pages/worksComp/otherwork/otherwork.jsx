@@ -6,11 +6,15 @@ export function Otherwork() {
   const [userData, setUserData] = useState([])
 
   const getData = async ()=>{
-    await axios.get("/api/getuser")
-      .then((res) => {
-        console.log(res.data)
-        setUserData(res.data)
-      })
+    try {
+      await axios.get("/api/getuser")
+        .then((res) => {
+          console.log(res.data)
+          setUserData(res.data)
+        })
+    } catch (error) {
+      console.log("catch", error)
+    }
 
   }
 
