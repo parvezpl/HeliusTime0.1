@@ -8,7 +8,7 @@ export function Otherwork() {
     axios.get("/api/getuser")
       .then((res) => {
         console.log(res.data)
-        setUserData(res.data)
+        // setUserData(res.data)
       })
   }, [])
 
