@@ -14,8 +14,8 @@ const cors = require("cors")
 
 
 const corsOtions = {
-    // origin:"https://heliustime.onrender.com",
-    origin:"http://localhost:5173/",
+    origin:"https://heliustime.onrender.com",
+    // origin:"http://localhost:5173/",
     methods:"GET, POST, PUT, DELETE, PATCH, HEAD",
     credentials:true
 }
