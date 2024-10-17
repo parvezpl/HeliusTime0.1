@@ -46,7 +46,7 @@ app.use('/api', getRouter)
 app.use('/api', getRout)
 app.use('/api', userRouter)
 
-
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 
 app.get('/api', (req, res) => {
