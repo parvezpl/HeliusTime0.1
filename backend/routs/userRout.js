@@ -11,8 +11,8 @@ userRouter.post('/createAccount', async (req, res)=>{
         const newUser= new User(data)
         const responce = await newUser.save()
         const token = generateToken(responce.id) //contact replace by username 
-        res.cookie("jwt",token)
-        token ? res.json(token) : res.json(false)
+        res.cookie("token",token)
+        token ? res.json({token,newUser}) : res.json(false)
     } catch (error) {
         res.json({"not gen":error})
     }
@@ -22,6 +22,7 @@ userRouter.post('/createAccount', async (req, res)=>{
 userRouter.post('/userlogin', async (req, res) => {
     try {
         const {username, password} =req.body;
+        console.log(username)
         const user= await User.findOne({username: username}); // contact replay by username 
         if(!user || !(await user.comparePassword(password))){
             return res.status(401).json({error:"invalid username or password"})
@@ -41,31 +42,32 @@ userRouter.post('/userlogin', async (req, res) => {
 })
 
 userRouter.get('/logout', async (req, res) => {
-    // console.log(res.clearCookie("jwt-token"))
+    console.log("log")
     try {
-        await res.clearCookie("jwt")
+        await res.clearCookie("token")
         console.log("logout successfull")
-        res.json("successfull")
+        res.json("logout successfull")
     } catch(err){
         res.status(500).json({error:"internal server erro"})
     }
 })
 
 
-userRouter.get('/getuser', async (req, res) => {
+userRouter.get('/getuser',jwtAuthMiddleware, async (req, res) => {
     const userData = req.user
-    console.log("userdata",userData)
+    // console.log("userdata",userData)
     const data = await User.find()
     res.status(200).json(data)
 })
 
 userRouter.get('/token',jwtAuthMiddleware, async (req, res) => {
-    console.log("hell")
-    // const { headers: { cookie } } = req;
     const userData = req.user
-    console.log("token", userData)
     res.json(userData)
 })
+
+
+
+
 
 
 module.exports = userRouter

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './logindetail.css';
 import axios from 'axios';
+import { singupData } from '../../api/apiCall';
 
 
 const LoginDetail = () => {
@@ -11,9 +12,12 @@ const LoginDetail = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("/api/singup")
-            console.log(response)
-            setData(response.data);
+            await singupData().then((res)=>{
+                // console.log(res)
+                setData(res);
+
+            }
+            )
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -34,7 +38,7 @@ const LoginDetail = () => {
                         <li key={index} className="contact-item">
                             <span className="contact-name">{contact.name}</span>
                             <span className="contact-mobile">{contact.mobile}</span>
-                            <span className="contact-email">{contact.email}</span>
+                            <span className="contact-email">{contact.contact}</span>
                         </li>
                     ))}
                 </ul>

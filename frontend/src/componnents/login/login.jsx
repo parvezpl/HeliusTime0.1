@@ -36,9 +36,9 @@ export function Login() {
                 setLoginError(null)
             })
             .catch((error) => {
-                console.error(error.response.error),
+                console.error("not login some problem in login component"),
                     setLoding(false)
-                setLoginError(error.response.data.error)
+                setLoginError("not login some problem in login component")
             });
     };
     const handleGoogleLogin = () => {

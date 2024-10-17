@@ -4,6 +4,7 @@ import axios, { Axios } from 'axios';
 import { useDispatch } from 'react-redux';
 import { loginFunc } from '../../reduxx/slices';
 import { useNavigate } from 'react-router-dom';
+import { createAccount } from '../../api/apiCall';
 
 export function SignupForm() {
   const dispatch = useDispatch()
@@ -22,9 +23,8 @@ export function SignupForm() {
   };
 
   const postDAta = async (data) => {
-    await axios.post('/api/createAccount', { name: data.name, contact: data.contact, username:data.name, password: data.password })
+    await createAccount(data)
       .then((res) =>{
-        if(res.data===false) return "not singup successful"
         dispatch(loginFunc(true))
         navigate('/')
       }
@@ -39,8 +39,6 @@ export function SignupForm() {
       return;
     }
     postDAta(formData)
-
-    console.log('Form Data Submitted:', formData);
     // Add form submission logic here
     setErrorMessage('');  // Clear any previous errors
     alert('Signup successful!');

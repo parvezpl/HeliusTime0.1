@@ -17,14 +17,26 @@ const cors = require("cors")
 
 
 
+  const allowlist = ['http://localhost:5173', 'http://example2.com']
+  const  corsOptionsDelegate = function (req, callback) {
+    var corsOptions;
+    if (allowlist.indexOf(req.header('Origin')) !== -1) {
+      corsOptions = { origin: true } 
+    } else {
+      corsOptions = { origin: false } 
+    }
+    callback(null, corsOptions) // callback expects two parameters: error and options
+  }
+
 app.use(bodyParser.json());
 app.use(bodyParser.text());
-app.use(cors({
+app.use(cors( 
+  // corsOptionsDelegate
+    {
     credentials: true,
     // origin: 'http://localhost:5173',
         origin:"https://heliustime.onrender.com",
     methods:"GET, POST, PUT, DELETE, PATCH, HEAD"
-
 }
 ))
 

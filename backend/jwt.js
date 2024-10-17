@@ -11,7 +11,7 @@ const jwtAuthMiddleware = (req, res, next) => {
     const tokenData = req.headers.cookie
     if (!tokenData) return res.status(401).json({ error:'not token' });
     const token = tokenData.split("=")[1]
-    if (!token) return res.status(401).json({ error:'Unauthorized' });
+    if (!token) return res.status(401).json({ error:'Unauthorized not send token like that' });
 
     try {
         const decoded= jwt.verify(token,process.env.JWT_SECRET);

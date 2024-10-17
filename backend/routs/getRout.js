@@ -5,13 +5,13 @@ const getRouter = express.Router()
  
 
 
-getRouter.get('/getuser', async (req, res) => {
-    // const userData = req.user
-    // console.log("userdata", req)
-    const data = await User.find()
-    console.log("userdata1", data)
-    res.status(200).json(data)
-})
+// getRouter.get('/getuser', async (req, res) => {
+//     // const userData = req.user
+//     // console.log("userdata", req)
+//     const data = await User.find()
+//     console.log("userdata1", data)
+//     res.status(200).json(data)
+// })
 
 
 
