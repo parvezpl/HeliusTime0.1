@@ -37,7 +37,8 @@ app.use(cors(
     {
     credentials: true,
     // origin: 'http://localhost:5173',
-        origin:"https://heliustime.onrender.com",
+        // origin:"https://heliustime.onrender.com",
+        origin:(res)=>console.log(res),
     methods:"GET, POST, PUT, DELETE, PATCH, HEAD"
 }
 ))
