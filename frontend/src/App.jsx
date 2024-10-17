@@ -7,15 +7,18 @@ import { useDispatch } from 'react-redux';
 import { loginFunc } from './reduxx/slices';
 import { useEffect, useState } from 'react';
 import { tokenverifie } from './api/apiCall';
+import axios from 'axios';
 
 function App() {
   const dispatch = useDispatch()
   const isloginCheck = async () => {
+    
     if (localStorage.getItem("user") || Cookies.get("token")) {
-      // console.log("res")
-      await tokenverifie().then((res) => {
+      await axios.get(`/api/token`)
+      .then((res) => {
+        console.log(res)
         dispatch(loginFunc(true))
-        localStorage.setItem("user", res.name)
+        localStorage.setItem("user", res.data.name)
 
       })
     }

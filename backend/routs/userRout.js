@@ -6,6 +6,7 @@ const userRouter = express.Router()
  
 
 userRouter.post('/createAccount', async (req, res)=>{
+    
     try {
         const data =req.body
         const newUser= new User(data)
@@ -62,7 +63,8 @@ userRouter.get('/getuser',jwtAuthMiddleware, async (req, res) => {
 
 userRouter.get('/token',jwtAuthMiddleware, async (req, res) => {
     const userData = req.user
-    res.json(userData)
+    console.log(userData)
+    res.json(userData )
 })
 
 

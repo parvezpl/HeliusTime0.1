@@ -1,8 +1,8 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-// const API_URL = import.meta.env.VITE_API_URL
-const API_URL = "http://localhost:3000"
+const API_URL = import.meta.env.VITE_API_URL
+// const API_URL = "http://localhost:3000"
 
 
 export const tokenverifie= async ()=>{
@@ -74,9 +74,9 @@ export const createAccount= async (data)=>{
 export const weblinksData= async ()=>{
   try {
     const response = await axios.get(`${API_URL}/api/weblinks`
-      , {
-        withCredentials: true, // Include cookies
-      }
+      // , {
+      //   withCredentials: true, // Include cookies
+      // }
     ).then((res)=>{
       return res.data
     })

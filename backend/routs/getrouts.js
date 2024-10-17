@@ -12,6 +12,7 @@ get_router.get('/singup',  async (req, res) => {
 })
 
 get_router.get('/weblinks',  async (req, res) => {
+    console.log("hello",res)
     const data = await weblinks.find()
     res.status(200).json(data)
 })

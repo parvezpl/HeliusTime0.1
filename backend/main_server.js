@@ -31,6 +31,7 @@ const cors = require("cors")
 app.use(bodyParser.json());
 app.use(bodyParser.text());
 app.use(cors( 
+  // (res)=>console.log(res)
   // corsOptionsDelegate
     {
     credentials: true,
