@@ -18,7 +18,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'https://heliustimebackend.onrender.com',
         changeOrigin: true,
       },
     },

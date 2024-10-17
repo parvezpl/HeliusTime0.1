@@ -9,7 +9,8 @@ const userRouter = require('./routs/userRout');
 const getRout = require('./routs/getRout');
 
 const db = require('./db');
-const cors = require("cors")
+const cors = require("cors");
+const path = require('path');
 
 // const passport = require('./auth');
 // const localAuth = passport.authenticate('local', { session: false })
