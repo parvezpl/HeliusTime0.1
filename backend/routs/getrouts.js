@@ -11,7 +11,7 @@ get_router.get('/singup',  async (req, res) => {
     res.status(200).json(data)
 })
 
-get_router.get('/weblinks', jwtAuthMiddleware,  async (req, res) => {
+get_router.get('/weblinks',  async (req, res) => {
     const data = await weblinks.find()
     res.status(200).json(data)
 })
