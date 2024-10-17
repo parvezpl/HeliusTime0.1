@@ -32,15 +32,15 @@ const path = require('path');
 app.use(bodyParser.json());
 app.use(bodyParser.text());
 app.use(cors( 
-  // (res)=>console.log(res)
+  (res)=>console.log(res)
   // corsOptionsDelegate
-    {
-    credentials: true,
-    // origin: 'http://localhost:5173',
-        // origin:"https://heliustime.onrender.com",
-        origin:(res)=>console.log(res),
-    methods:"GET, POST, PUT, DELETE, PATCH, HEAD"
-}
+//     {
+//     credentials: true,
+//     // origin: 'http://localhost:5173',
+//         // origin:"https://heliustime.onrender.com",
+    
+//     methods:"GET, POST, PUT, DELETE, PATCH, HEAD"
+// }
 ))
 
 app.use('/api', postRouter)
