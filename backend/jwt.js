@@ -8,9 +8,13 @@ const jwtAuthMiddleware = (req, res, next) => {
     // const token = req.headers.authorization.split(' ')[1];
     // const token = res.cookie("token")
 
-    const tokenData = req.headers.cookie
-    if (!tokenData) return res.status(401).json({ error:'not token' });
-    const token = tokenData.split("=")[1]
+    // const tokenData = req.headers.cookie
+    // console.log(tokenData)
+    // if (!tokenData) return res.status(401).json({ error:'not token' });
+    // const token = tokenData.split("=")[1]
+
+    const token= req.cookies.token
+    console.log(token)
     if (!token) return res.status(401).json({ error:'Unauthorized not send token like that' });
 
     try {

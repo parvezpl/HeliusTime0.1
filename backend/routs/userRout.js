@@ -31,7 +31,7 @@ userRouter.post('/userlogin', async (req, res) => {
         if(!user || !(await user.comparePassword(password))){
             return res.status(401).json({error:"invalid username or password"})
         }
-        
+
         const payload = {
             id : user.id,
             name:user.name,
@@ -63,7 +63,7 @@ userRouter.get('/logout', async (req, res) => {
 
 userRouter.get('/getuser',jwtAuthMiddleware, async (req, res) => {
     const userData = req.user
-    // console.log("userdata",userData)
+    console.log("userdata",userData)
     const data = await User.find()
     res.status(200).json(data)
 })
