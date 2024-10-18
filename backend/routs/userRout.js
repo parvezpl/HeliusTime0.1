@@ -61,7 +61,7 @@ userRouter.get('/getuser',jwtAuthMiddleware, async (req, res) => {
     res.status(200).json(data)
 })
 
-userRouter.get('/token',async (req, res) => {
+userRouter.get('/token',jwtAuthMiddleware, async (req, res) => {
     const userData = req.user
     console.log(res)
     res.json(userData )

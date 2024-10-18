@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT ||  3000;
 const bodyParser = require('body-parser');
+const cookieParser= require('cookie-parser')
 
 const postRouter = require('./routs/postrouts');
 const getRouter = require('./routs/getrouts');
@@ -41,6 +42,7 @@ app.use(cors(
     methods:"GET, POST, PUT, DELETE, PATCH, HEAD"
 }
 ))
+app.use(cookieParser())
 
 app.use('/api', postRouter)
 app.use('/api', getRouter)
