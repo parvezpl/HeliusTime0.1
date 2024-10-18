@@ -61,10 +61,11 @@ userRouter.get('/getuser',jwtAuthMiddleware, async (req, res) => {
     res.status(200).json(data)
 })
 
-userRouter.get('/token',jwtAuthMiddleware, async (req, res) => {
-    const userData = req.user
-    console.log(res)
-    res.json(userData )
+userRouter.get('/token', async (req, res) => {
+    // const userData = req.user
+    const token= req.cookies.token
+    console.log(token)
+    res.json(token )
 })
 
 

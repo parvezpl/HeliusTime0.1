@@ -34,14 +34,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.text());
 app.use(express.json())
 app.use(cors( 
-  (res)=>console.log(res)
+  // (res)=>console.log(res)
   // corsOptionsDelegate
-//     {
-//     credentials: true,
-//     // origin: 'http://localhost:5173',
-//         origin:"https://heliustime.onrender.com",
-//     methods:"GET, POST, PUT, DELETE, PATCH, HEAD"
-// }
+    {
+    credentials: true,
+    // origin: 'http://localhost:5173',
+        origin:"https://heliustime.onrender.com",
+    methods:"GET, POST, PUT, DELETE, PATCH, HEAD"
+}
 ))
 app.use(cookieParser())
 
