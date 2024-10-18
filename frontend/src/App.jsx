@@ -14,11 +14,13 @@ function App() {
   const API_URL = import.meta.env.VITE_API_URL
   console.log(API_URL)
   const isloginCheck = async () => {
-
-    if (localStorage.getItem("user") || Cookies.get("token")) {
+  const token = Cookies.get("token")
+    if (localStorage.getItem("user") || token) {
       await axios.get(`${API_URL}/api/token`,
         {
-          withCredentials: true, // Include cookies
+          headers: {
+            Authorization: `Bearer ${token}`, // Sending the token in the Authorization header
+          }
         }
       )
         .then((res) => {

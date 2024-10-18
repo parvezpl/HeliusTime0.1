@@ -68,9 +68,9 @@ userRouter.get('/getuser',jwtAuthMiddleware, async (req, res) => {
     res.status(200).json(data)
 })
 
-userRouter.get('/token',jwtAuthMiddleware, async (req, res) => {
+userRouter.get('/token', jwtAuthMiddleware, async (req, res) => {
+    const token = req.headers['authorization']?.split(' ')[1]; 
     const name = req.user.name
-    const token= req.cookies.token
     console.log(token)
     res.json({name, token} )
 })

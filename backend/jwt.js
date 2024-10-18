@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
 
+let token;
 const jwtAuthMiddleware = (req, res, next) => {
 
     // const authorization = req.headers.authorization
@@ -12,8 +13,11 @@ const jwtAuthMiddleware = (req, res, next) => {
     // console.log(tokenData)
     // if (!tokenData) return res.status(401).json({ error:'not token' });
     // const token = tokenData.split("=")[1]
-
-    const token= req.cookies.token
+    if(req.headers['authorization']?.split(' ')[1]) {
+        token = req.headers['authorization']?.split(' ')[1];
+    } else{
+        token= req.cookies.token
+    }
     console.log(token)
     if (!token) return res.status(401).json({ error:'Unauthorized not send token like that' });
 
