@@ -14,19 +14,20 @@ function App() {
   const API_URL = import.meta.env.VITE_API_URL
   console.log(API_URL)
   const isloginCheck = async () => {
-    
+
     if (localStorage.getItem("user") || Cookies.get("token")) {
       await axios.get(`${API_URL}/api/token`,
-         {
-        withCredentials: true, // Include cookies
-      }
-    )
-      .then((res) => {
-        console.log(res)
-        dispatch(loginFunc(true))
-        localStorage.setItem("user", res.data.name)
+        null,
+        {
+          withCredentials: true, // Include cookies
+        }
+      )
+        .then((res) => {
+          console.log(res)
+          dispatch(loginFunc(true))
+          localStorage.setItem("user", res.data.name)
 
-      })
+        })
     }
   }
 

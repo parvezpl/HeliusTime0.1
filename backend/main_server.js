@@ -32,7 +32,7 @@ const path = require('path');
 
 app.use(bodyParser.json());
 app.use(bodyParser.text());
-app.use(express.json())
+
 app.use(cors( 
   // (res)=>console.log(res)
   // corsOptionsDelegate
@@ -44,6 +44,7 @@ app.use(cors(
 }
 ))
 app.use(cookieParser())
+app.use(express.json())
 
 app.use('/api', postRouter)
 app.use('/api', getRouter)

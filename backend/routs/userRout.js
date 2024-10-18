@@ -34,7 +34,7 @@ userRouter.post('/userlogin', async (req, res) => {
         }
         
         const token = generateToken(payload)
-        res.cookie("jwt",token)
+        res.cookie("token",token)
         token ? res.json({payload,token}) : res.json(false)
         console.log("login successful")
     } catch(err){
