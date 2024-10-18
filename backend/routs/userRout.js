@@ -12,7 +12,10 @@ userRouter.post('/createAccount', async (req, res)=>{
         const newUser= new User(data)
         const responce = await newUser.save()
         const token = generateToken(responce.id) //contact replace by username 
-        res.cookie("token",token)
+        res.cookie("token",token, {
+            secure:true,
+            httpOnly:true
+        })
         token ? res.json({token,newUser}) : res.json(false)
     } catch (error) {
         res.json({"not gen":error})
@@ -35,7 +38,7 @@ userRouter.post('/userlogin', async (req, res) => {
         
         const token = generateToken(payload)
         res.cookie("token",token, {
-            // secure:true,
+            secure:true,
             httpOnly:true
         })
         token ? res.json({payload,token}) : res.json(false)
