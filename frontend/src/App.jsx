@@ -17,7 +17,6 @@ function App() {
 
     if (localStorage.getItem("user") || Cookies.get("token")) {
       await axios.get(`${API_URL}/api/token`,
-        null,
         {
           withCredentials: true, // Include cookies
         }

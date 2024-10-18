@@ -34,7 +34,10 @@ userRouter.post('/userlogin', async (req, res) => {
         }
         
         const token = generateToken(payload)
-        res.cookie("token",token)
+        res.cookie("token",token, {
+            // secure:true,
+            httpOnly:true
+        })
         token ? res.json({payload,token}) : res.json(false)
         console.log("login successful")
     } catch(err){
@@ -61,11 +64,11 @@ userRouter.get('/getuser',jwtAuthMiddleware, async (req, res) => {
     res.status(200).json(data)
 })
 
-userRouter.get('/token', async (req, res) => {
-    // const userData = req.user
-    const token= req.cookies.token
-    console.log(token)
-    res.json(token )
+userRouter.get('/token', jwtAuthMiddleware, async (req, res) => {
+    const userData = req.user
+    // const token= req.cookies.token
+    console.log(userData)
+    res.json(userData )
 })
 
 

@@ -1,9 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const API_URL = import.meta.env.VITE_API_URL
-// const API_URL = "http://localhost:3000"
-
+const API_URL = import.meta.env.VITE_API_URL // IF LOCAL HOST THEN localhost:3000 and if deploy then heliustimebachend.onrender.com
 
 export const tokenverifie= async ()=>{
   try {
