@@ -1,7 +1,11 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
+
 const API_URL = import.meta.env.VITE_API_URL // IF LOCAL HOST THEN localhost:3000 and if deploy then heliustimebachend.onrender.com
+
+const token = Cookies.get("token")
+
 
 export const tokenverifie= async ()=>{
   try {
@@ -90,7 +94,9 @@ export const singupData= async ()=>{
   try {
     const response = await axios.get(`${API_URL}/api/getuser`
       , {
-        withCredentials: true, // Include cookies
+        headers: {
+          Authorization: `Bearer ${token}`, // Sending the token in the Authorization header
+        }
       }
     ).then((res)=>{
       return res.data
