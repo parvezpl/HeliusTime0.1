@@ -68,10 +68,25 @@ userRouter.get('/getuser',jwtAuthMiddleware, async (req, res) => {
 })
 
 userRouter.get('/getuserdata',jwtAuthMiddleware, async (req, res) => {
-    const userData = req.user
-    const data = await User.find()
+    
+    const { id } = req.query;
+    const data = await User.findOne({_id:id})
     res.status(200).json(data)
 })
+
+
+userRouter.put('/getuserdata/:id', async (req, res) => {
+    const { id } = req.params;
+    const { data } = req.body;
+    console.log(id,data)
+    try {
+        const updatedUser = await User.findByIdAndUpdate(id, data, { new: true });
+        if (!updatedUser) return res.status(404).send('User not found');
+        res.send(updatedUser);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
 
 
 userRouter.get('/token', jwtAuthMiddleware, async (req, res) => {

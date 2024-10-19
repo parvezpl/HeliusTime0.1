@@ -27,6 +27,9 @@ function App() {
           localStorage.setItem("user", res.data.name)
 
         })
+        .catch((err)=>{
+          console.log("auth failed")
+        })
     }
   }
 

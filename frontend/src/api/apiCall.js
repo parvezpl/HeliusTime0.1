@@ -112,6 +112,43 @@ export const singupData = async () => {
     console.error('Error fetching data:', error);
     throw error; // Rethrow the error for further handling
   }
+}
 
+
+export const getUserData = async (userId) => {
+  try {
+    const response = await axios.get(`${API_URL}/api/getuserdata?id=${userId}`
+      , {
+        headers: {
+          Authorization: `Bearer ${token}`, // Sending the token in the Authorization header
+        }
+      }
+    ).then((res) => {
+      return res.data
+    })
+    return response;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error; // Rethrow the error for further handling
+  }
+}
+
+export const getUserDataUpdate = async (userId,data) => {
+  try {
+    const response = await axios.put(`${API_URL}/api/getuserdata/${userId}`
+      , {
+        headers: {
+          Authorization: `Bearer ${token}`, // Sending the token in the Authorization header
+        }, 
+        data
+      }
+    ).then((res) => {
+      return res.data
+    })
+    return response;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error; // Rethrow the error for further handling
+  }
 }
 

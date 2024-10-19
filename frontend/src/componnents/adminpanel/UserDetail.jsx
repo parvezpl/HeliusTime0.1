@@ -1,18 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from "react-router-dom";
+import { getUserData, getUserDataUpdate } from '../../api/apiCall';
+import './css/userDetail.css'
 
 function UserDetail() {
+    const [updateStatus, seUpdateStatus]= useState('')
     const location = useLocation();
     const userId = location.state;
     console.log(userId)
 
-    
+    useEffect(()=>{
+        getUserData(userId).then((res)=>{
+            console.log(res)
+            setFormData((prevData) => ({
+                ...prevData,
+                name:res.name,
+                username:res.username,
+                contact:res.contact
+
+                // [res.name]: files ? files[0] : value,
+            }));
+        })
+    },[])
+
 
     const [formData, setFormData] = useState({
         photo: null,
         name: '',
-        email: '',
-        mobile: '',
+        username: '',
+        contact: '',
         address: '',
         other: '',
     });
@@ -28,16 +44,23 @@ function UserDetail() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Handle form submission
-        console.log('Form Data:', formData);
+        getUserDataUpdate(userId, formData)
+        .then((res)=>{
+            seUpdateStatus("update successfull")
+        })
+        .catch(
+            seUpdateStatus("not update")
+        )
     };
 
     return (
         <>
             <div>UserDetail</div>
+            <div className='updatestatus'>{updateStatus}</div>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className='leben_and_input'>
                     <label>
-                        <div
+                        <input
                             type="file"
                             name="photo"
                             onChange={handleChange}
@@ -45,66 +68,66 @@ function UserDetail() {
                         />
                     </label>
                 </div>
-                <div>
+                <div className='leben_and_input'>
                     <label>
                         Name:
-                        <div
+                    </label>
+                        <input
                             type="text"
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
                             required
                         />
-                    </label>
                 </div>
-                <div>
+                <div className='leben_and_input'>
                     <label>
-                        Email:
-                        <div
-                            type="email"
-                            name="email"
-                            value={formData.email}
+                        username:
+                    </label>
+                        <input
+                            type="text"
+                            name="username"
+                            value={formData.username}
                             onChange={handleChange}
                             required
                         />
-                    </label>
                 </div>
-                <div>
+                <div className='leben_and_input'>
                     <label>
-                        Mobile:
-                        <div
-                            type="tel"
-                            name="mobile"
-                            value={formData.mobile}
+                    contact:
+                    </label>
+                        <input
+                            type="text"
+                            name="contact"
+                            value={formData.contact}
                             onChange={handleChange}
                             required
                         />
-                    </label>
                 </div>
-                <div>
+                <div className='leben_and_input'>
                     <label>
                         Address:
-                        <div
+                    </label>
+                        <input
                             type="text"
                             name="address"
                             value={formData.address}
                             onChange={handleChange}
-                            required
+                       
                         />
-                    </label>
                 </div>
-                <div>
+                <div className='leben_and_input'>
                     <label>
                         Other:
-                        <div
+                    </label>
+                        <input
                             type="text"
                             name="other"
                             value={formData.other}
                             onChange={handleChange}
                         />
-                    </label>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit">Update</button>
             </form>
         </>
     )
