@@ -1,38 +1,48 @@
 import React, { useEffect, useState } from 'react'
 import './website.css'
-import axios from 'axios';
+import { MdOutlineDeleteForever } from "react-icons/md";
 import EntryForm from './EntryForm ';
-import { weblinksData } from '../../../../api/apiCall';
+import { deleteWeblinksData, weblinksData } from '../../../../api/apiCall';
 export function Website(props) {
     const [fetchDetail, setFetchDetail] = useState()
     const [linksdata, setData] = useState([])
-
-    const fetchData = async () => {
+    useEffect(() => {
         try {
-            await weblinksData().then((res) => {
+            weblinksData().then((res) => {
                 setData(res);
             })
         } catch (error) {
             console.error("plz login first");
         }
-    };
-
-    const updates = localStorage.getItem("update")
-    useEffect(() => {
-        fetchData()
-    }, [updates])
-
+    }, [linksdata])
     const clickhandler = (item) => {
         setFetchDetail(item.details)
+    }
+
+    const deleteHandler = (id) =>{
+        deleteWeblinksData(id)
+       
     }
 
     return (
         <>
             <div className='main-website-container'>
                 <div className='sidebar-container'>
-                    <div>
-                        {linksdata?.map((item, index) => <span key={index} className='item-box' onClick={() => clickhandler(item)} >{item.links}</span>)}
-                    </div>
+
+                    {linksdata?.map((item, index) =>
+                        <div key={index} className='links-item-box' >
+                            <span
+                                className='item-box'
+                                onClick={() => clickhandler(item)}
+                            >
+                                {item.links}
+                            </span>
+                            <span>
+                                <MdOutlineDeleteForever className='icon' onClick={()=>deleteHandler(item._id)}/>
+                            </span>
+                        </div>
+                    )}
+
                 </div>
                 <div className='main-website-box'>
                     <div>

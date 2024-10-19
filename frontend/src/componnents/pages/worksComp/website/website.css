@@ -10,14 +10,6 @@
     height: 1196px;
 }
 
-.sidebar-container div {
-    display: flex;
-    flex-direction: column;
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    margin: 15px;
-}
 
 .main-website-box {
     
@@ -33,4 +25,17 @@
     font-size: 17px;
     padding: 11px;
     background-color: rgb(51, 50, 50);
+}
+
+.links-item-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+   justify-content: space-between;
+}
+
+.icon {
+    color: red;
+    font-size: 25px;
+    cursor: pointer;
 }

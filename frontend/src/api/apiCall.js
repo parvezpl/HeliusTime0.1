@@ -76,9 +76,6 @@ export const createAccount = async (data) => {
 }
 
 
-
-
-
 export const weblinksData = async () => {
   try {
     const response = await axios.get(`${API_URL}/api/weblinks`
@@ -94,6 +91,38 @@ export const weblinksData = async () => {
     throw error; // Rethrow the error for further handling
   }
 
+}
+
+export const createWeblinksData = async (data) => {
+  try {
+    const response = await axios.post(`${API_URL}/api/weblinks`, data) // Replace with your endpoint
+    .then((res=>{
+      return res.data
+    }))
+
+    return response;
+  } catch (error) {
+    console.error('Error fetching data problem in apicall user login');
+    throw error; // Rethrow the error for further handling
+  }
+}
+
+export const deleteWeblinksData = async (userId) => {
+  try {
+    const response = await axios.delete(`${API_URL}/api/weblinks/${userId}`
+      , {
+        headers: {
+          Authorization: `Bearer ${token}`, // Sending the token in the Authorization header
+        }, 
+      }
+    ).then((res) => {
+      return res.data
+    })
+    return response;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error; // Rethrow the error for further handling
+  }
 }
 
 export const singupData = async () => {
@@ -152,3 +181,20 @@ export const getUserDataUpdate = async (userId,data) => {
   }
 }
 
+export const deleteUserData = async (userId) => {
+  try {
+    const response = await axios.delete(`${API_URL}/api/getuserdata/${userId}`
+      , {
+        headers: {
+          Authorization: `Bearer ${token}`, // Sending the token in the Authorization header
+        }, 
+      }
+    ).then((res) => {
+      return res.data
+    })
+    return response;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error; // Rethrow the error for further handling
+  }
+}

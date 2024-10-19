@@ -43,7 +43,7 @@ export function Nav() {
     return (
         <>
             <div className='navi'>
-                <Link to={"/"} className='navi-name'><span>{user ? user : "PARVEZ ALAM"}</span></Link>
+                <Link to={"/"} className='navi-name'><span>{user ? user.toUpperCase() : "PARVEZ ALAM"}</span></Link>
                 <div className='navi-end'>
                     <ul className='navi-option'>
                         <div className='switch'

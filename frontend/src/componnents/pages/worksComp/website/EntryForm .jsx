@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./EntryForm.css"; // Optional: Add some CSS for styling
 import axios from "axios";
+import { createWeblinksData } from "../../../../api/apiCall";
 
 const EntryForm = () => {
     // Set up initial state for form fields
@@ -22,8 +23,9 @@ const EntryForm = () => {
 
     const postDAta = async (data) => {
         // console.log("Form Data :", data);
-        await axios.post('/api/weblinks', { links: data.links, details: data.details })
+        await createWeblinksData(data)
             .then((res) => {
+                localStorage.setItem("linkId", res._id)
                 setFormData({
                     links: "",
                     details: ""
@@ -50,10 +52,11 @@ const EntryForm = () => {
 
         setIsEditing(true); // Enable editing when updating
     };
-
+    const linkId = localStorage.getItem("linkId")
     return (
         <div className="entry-form-container">
             <h2>Entry Form add data</h2>
+            {linkId}
             <form className="main-form">
                 <div className="form-row">
                     <label>Links:</label>

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { singupData } from '../../api/apiCall';
+import { deleteUserData, singupData } from '../../api/apiCall';
 import './css/user.css'
+import { MdDeleteForever } from "react-icons/md";
 import { Navigate, useNavigate } from 'react-router-dom';
 
 const Users = () => {
   const [contacts, setData] = useState([]);
+  const [sms, setSms] = useState('');
   const navigate = useNavigate()
   const fetchData = async () => {
     try {
@@ -19,23 +21,39 @@ const Users = () => {
 
   useEffect(() => {
     fetchData()
-  }, [])
-const clickhandler = (userId)=>{
-  navigate("/admin/userDetail",{state:userId})
+  }, [sms])
+  const clickhandler = (userId) => {
+    navigate("/admin/userDetail", { state: userId })
 
-}
+  }
 
+  const deleteHandler = (id) => {
+    deleteUserData(id).then((res) => {
+      setSms(res.message)
+      setTimeout(()=>{
+        setSms("")
+      },3000)
+      console.log(res)
+    })
+
+  }
   return (
     <div className="page-content" >
       <ul className="contact-list">
+        <div style={{"height":"10px", "color":"white"}}>{sms}</div>
         {contacts.map((contact, index) => (
+
           <li key={index} className="contact-item"
-          onClick={()=>clickhandler(contact._id)}
+
           >
-            <span className="contact-name">{contact.name}</span>
-            <span className="contact-mobile">{contact.mobile}</span>
-            <span className="contact-email">{contact.contact}</span>
+            <div onClick={() => clickhandler(contact._id)} className='box-con-item'>
+              <span className="contact-name">{contact.name}</span>
+              <span className="contact-mobile">{contact.mobile}</span>
+              <span className="contact-email">{contact.contact}</span>
+            </div>
+            <MdDeleteForever className='icon' onClick={() => deleteHandler(contact._id)} />
           </li>
+
         ))}
       </ul>
     </div>
