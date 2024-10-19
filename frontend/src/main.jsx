@@ -16,7 +16,9 @@ import MainAdmin from './componnents/adminpanel/MainAdmin.jsx'
 import Dashboard from './componnents/adminpanel/Dashboard.jsx'
 import Users from './componnents/adminpanel/Users.jsx'
 import Settings from './componnents/adminpanel/Settings.jsx'
-import {Otherwork} from './componnents/pages/worksComp/otherwork/otherwork.jsx'
+import { Otherwork } from './componnents/pages/worksComp/otherwork/otherwork.jsx'
+import AdmninProtectedRoute from './protectedRoute/adminProtect.jsx'
+import UserDetail from './componnents/adminpanel/UserDetail.jsx'
 
 
 
@@ -24,12 +26,19 @@ import {Otherwork} from './componnents/pages/worksComp/otherwork/otherwork.jsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
 
-    <Route  element={<App />}>
+    <Route element={<App />}>
       <Route path='/' element={<CenterBox />} />
-      <Route path='/admin' element={<MainAdmin />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="users" element={<Users />} />
-          <Route path="settings" element={<Settings />} />
+      <Route path='/admin' element={
+        <AdmninProtectedRoute>
+          <MainAdmin />
+        </AdmninProtectedRoute>
+      }>
+
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="users" element={<Users />} />
+        <Route path="settings" element={<Settings />} />
+        <Route path="userDetail" element={<UserDetail />} />
+
       </Route>
 
       <Route path='login' element={<Login />} />

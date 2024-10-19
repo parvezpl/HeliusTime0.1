@@ -63,16 +63,21 @@ userRouter.get('/logout', async (req, res) => {
 
 userRouter.get('/getuser',jwtAuthMiddleware, async (req, res) => {
     const userData = req.user
-    console.log("userdata",userData)
     const data = await User.find()
     res.status(200).json(data)
 })
 
+userRouter.get('/getuserdata',jwtAuthMiddleware, async (req, res) => {
+    const userData = req.user
+    const data = await User.find()
+    res.status(200).json(data)
+})
+
+
 userRouter.get('/token', jwtAuthMiddleware, async (req, res) => {
     const token = req.headers['authorization']?.split(' ')[1]; 
     const name = req.user.name
-    console.log(token)
-    res.json({name, token} )
+    res.json({name, token, islogin:true} )
 })
 
 

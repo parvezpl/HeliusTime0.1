@@ -2,12 +2,11 @@ import React from 'react';
 import './css/Header.css'; // Add styles here
 
 const Header = () => {
+  const user = localStorage.getItem('user')
   return (
     <header className="header">
-      <h1>Admin Panel</h1>
       <div className="header-right">
-        <span>Welcome, Admin</span>
-        <button className="logout-btn">Logout</button>
+        <span>Welcome, {user}</span>
       </div>
     </header>
   );

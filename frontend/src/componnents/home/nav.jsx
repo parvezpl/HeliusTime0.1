@@ -10,10 +10,8 @@ export function Nav() {
     const [optionStatus, setOptionStatus] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const islogin = useSelector((state) => state.account.loginStatus)
+    const islogin = localStorage.getItem('islogin')
     const user = localStorage.getItem("user")
-
-
 
     const options = [
         {
@@ -54,10 +52,10 @@ export function Nav() {
                         <div className='navi-option-link'
                         style={{display: optionStatus ? "none" : "flex"}}
                         >
+                            {islogin && <Link className='navi-option-link' to={'/admin'}>Admin</Link>}
                             <Link className='navi-option-link' to={'/'}>home</Link>
                             <Link className='navi-option-link' to={'/logindetail'}>about</Link>
                             <Link className='navi-option-link'>service</Link>
-                            <Link className='navi-option-link' to={'/admin'}>admin</Link>
                             <Link className='navi-option-link'>contact</Link>
                         </div>
                     </ul>

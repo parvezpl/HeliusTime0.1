@@ -7,16 +7,20 @@ const API_URL = import.meta.env.VITE_API_URL // IF LOCAL HOST THEN localhost:300
 const token = Cookies.get("token")
 
 
-export const tokenverifie= async ()=>{
+export const tokenverifie = async () => {
   try {
     const response = await axios.get(`${API_URL}/api/token`
       , {
-        withCredentials: true, // Include cookies
+        headers: {
+          Authorization: `Bearer ${token}`, // Sending the token in the Authorization header
+        }
       }
-    ).then((res)=>{
-      // console.log(res)
+    ).then((res) => {
+      localStorage.setItem('islogin',true)
       return res.data
     })
+    return response
+    // console.log("test", response)
     return response;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -26,11 +30,11 @@ export const tokenverifie= async ()=>{
 }
 
 
-export const userLogin= async (formData)=>{
+export const userLogin = async (formData) => {
   try {
     const response = await axios.post(`${API_URL}/api/userlogin`, { username: formData.contact, password: formData.password }); // Replace with your endpoint
-    // console.log(response.data)
     Cookies.set('token', response.data.token, { expires: 7 });
+    localStorage.setItem('islogin',true)
     return response.data;
   } catch (error) {
     console.error('Error fetching data problem in apicall user login');
@@ -39,11 +43,12 @@ export const userLogin= async (formData)=>{
 }
 
 
-export const logout= async ()=>{
+export const logout = async () => {
   try {
-    const response = await axios.get(`${API_URL}/api/logout`).then((res)=>{
+    const response = await axios.get(`${API_URL}/api/logout`).then((res) => {
       Cookies.remove("token")
       localStorage.removeItem("user")
+      localStorage.removeItem('islogin')
       return res.data
     })
     return response;
@@ -56,12 +61,13 @@ export const logout= async ()=>{
 
 
 
-export const createAccount= async (data)=>{
+export const createAccount = async (data) => {
   try {
-    const response = await axios.post(`${API_URL}/api/createAccount`, { name: data.name, contact: data.contact, username:data.name, password: data.password}); // Replace with your endpoint
+    const response = await axios.post(`${API_URL}/api/createAccount`, { name: data.name, contact: data.contact, username: data.name, password: data.password }); // Replace with your endpoint
     console.log(response.data.newUser.name)
     // Cookies.set('token', response.data, { expires: 7 });
     localStorage.setItem("user", response.data.newUser.name)
+    localStorage.setItem('islogin',true)
     return response.data;
   } catch (error) {
     console.error('Error fetching data problem in apicall user login');
@@ -73,13 +79,13 @@ export const createAccount= async (data)=>{
 
 
 
-export const weblinksData= async ()=>{
+export const weblinksData = async () => {
   try {
     const response = await axios.get(`${API_URL}/api/weblinks`
       // , {
       //   withCredentials: true, // Include cookies
       // }
-    ).then((res)=>{
+    ).then((res) => {
       return res.data
     })
     return response;
@@ -90,7 +96,7 @@ export const weblinksData= async ()=>{
 
 }
 
-export const singupData= async ()=>{
+export const singupData = async () => {
   try {
     const response = await axios.get(`${API_URL}/api/getuser`
       , {
@@ -98,7 +104,7 @@ export const singupData= async ()=>{
           Authorization: `Bearer ${token}`, // Sending the token in the Authorization header
         }
       }
-    ).then((res)=>{
+    ).then((res) => {
       return res.data
     })
     return response;

@@ -12,7 +12,6 @@ import axios from 'axios';
 function App() {
   const dispatch = useDispatch()
   const API_URL = import.meta.env.VITE_API_URL
-  console.log(API_URL)
   const isloginCheck = async () => {
   const token = Cookies.get("token")
     if (localStorage.getItem("user") || token) {
@@ -24,7 +23,6 @@ function App() {
         }
       )
         .then((res) => {
-          console.log(res)
           dispatch(loginFunc(true))
           localStorage.setItem("user", res.data.name)
 

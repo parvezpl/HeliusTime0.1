@@ -6,13 +6,11 @@ import { singupData } from '../../api/apiCall';
 
 const LoginDetail = () => {
 
-
-
     const [contacts, setData] = useState([]);
 
     const fetchData = async () => {
         try {
-            await singupData().then((res)=>{
+            await singupData().then((res) => {
                 // console.log(res)
                 setData(res);
 
@@ -23,8 +21,8 @@ const LoginDetail = () => {
         }
     };
 
-    const submithande=async ()=>{
-        
+    const submithande = async () => {
+
     }
 
 

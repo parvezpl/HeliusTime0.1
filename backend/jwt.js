@@ -18,7 +18,7 @@ const jwtAuthMiddleware = (req, res, next) => {
     } else{
         token= req.cookies.token
     }
-    console.log(token)
+
     if (!token) return res.status(401).json({ error:'Unauthorized not send token like that' });
 
     try {
