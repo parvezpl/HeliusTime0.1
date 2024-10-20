@@ -11,6 +11,7 @@ userRouter.post('/createAccount', async (req, res)=>{
         const data =req.body
         const newUser= new User(data)
         const responce = await newUser.save()
+        console.log(responce)
         const token = generateToken(responce.id) //contact replace by username 
         res.cookie("token",token, {
             secure:true,
@@ -68,7 +69,6 @@ userRouter.get('/getuser',jwtAuthMiddleware, async (req, res) => {
 })
 
 userRouter.get('/getuserdata',jwtAuthMiddleware, async (req, res) => {
-    
     const { id } = req.query;
     const data = await User.findOne({_id:id})
     res.status(200).json(data)
@@ -83,6 +83,17 @@ userRouter.put('/getuserdata/:id', async (req, res) => {
         const updatedUser = await User.findByIdAndUpdate(id, data, { new: true });
         if (!updatedUser) return res.status(404).send('User not found');
         res.send(updatedUser);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+userRouter.delete('/getuserdata/:id',jwtAuthMiddleware, async (req, res) => {
+    const { id } = req.params;
+    try {
+        const deletedUser = await User.findByIdAndDelete(id);
+        if (!deletedUser) return res.status(404).send('User not found');
+        res.send({ message: 'User deleted successfully', deletedUser });
     } catch (error) {
         res.status(500).send(error);
     }

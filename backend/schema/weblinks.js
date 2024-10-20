@@ -5,7 +5,6 @@ require('dotenv').config()
 const websitesSchema = new mongoose.Schema({
     links: {
         type: String,
-        unique: true,
         require: true
     },
     details:{
