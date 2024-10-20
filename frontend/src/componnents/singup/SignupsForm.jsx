@@ -72,6 +72,7 @@ export function SignupForm() {
         <div className="form-group">
           <label htmlFor="contact">Mobile or Email</label>
           <input
+           
             type="text"
             id="contact"
             name="contact"

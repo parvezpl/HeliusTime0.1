@@ -6,6 +6,8 @@ import { deleteWeblinksData, weblinksData } from '../../../../api/apiCall';
 export function Website(props) {
     const [fetchDetail, setFetchDetail] = useState()
     const [linksdata, setData] = useState([])
+    const [sms, setSms] = useState('')
+
     useEffect(() => {
         try {
             weblinksData().then((res) => {
@@ -21,7 +23,10 @@ export function Website(props) {
 
     const deleteHandler = (id) =>{
         deleteWeblinksData(id)
-       
+        setTimeout(() => {
+            setSms("")
+        }, 3000)
+        setSms("deleted successfull")
     }
 
     return (
@@ -46,7 +51,7 @@ export function Website(props) {
                 </div>
                 <div className='main-website-box'>
                     <div>
-                        <EntryForm />
+                        <EntryForm sms={sms}/>
                     </div>
                     <div>{fetchDetail}</div>
                 </div>

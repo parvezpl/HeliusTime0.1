@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./EntryForm.css"; // Optional: Add some CSS for styling
-import axios from "axios";
 import { createWeblinksData } from "../../../../api/apiCall";
 
-const EntryForm = () => {
+const EntryForm = (data) => {
     // Set up initial state for form fields
+    const [sms, setSms] = useState('')
     const [formData, setFormData] = useState({
         links: "",
         details: ""
@@ -21,6 +21,8 @@ const EntryForm = () => {
         }));
     };
 
+
+
     const postDAta = async (data) => {
         // console.log("Form Data :", data);
         await createWeblinksData(data)
@@ -30,7 +32,13 @@ const EntryForm = () => {
                     links: "",
                     details: ""
                 })
+
+                setTimeout(() => {
+                    setSms("")
+                }, 3000)
+                setSms("submit successfull")
             }
+
             )
             .catch((error) => console.error(error));
     }
@@ -56,7 +64,7 @@ const EntryForm = () => {
     return (
         <div className="entry-form-container">
             <h2>Entry Form add data</h2>
-            {linkId}
+            {sms ? sms : data.sms}
             <form className="main-form">
                 <div className="form-row">
                     <label>Links:</label>
