@@ -39,3 +39,10 @@
     font-size: 25px;
     cursor: pointer;
 }
+
+.fetchdetail {
+    padding: 12px;
+    border: solid 2px green;
+    text-align: left;
+    margin: 15px;
+}

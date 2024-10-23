@@ -17,6 +17,14 @@
     justify-content: space-between;
     align-items: center;
   } 
+
+  .form-row textarea{
+    width: -webkit-fill-available;
+    height: 107px;
+    color: white;
+    background-color: #515050;
+    padding: 7px;
+  }
   .form-row:last-child {
     display: flex;
     align-items: end;

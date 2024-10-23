@@ -25,7 +25,6 @@ function App() {
             navigate('/')
           } else{
             dispatch(loginFunc(true))
-            console.log(res?.loginstatus)
             // localStorage.setItem("user", res.data)
           }
         })

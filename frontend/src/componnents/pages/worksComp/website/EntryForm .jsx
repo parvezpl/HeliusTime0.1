@@ -78,8 +78,8 @@ const EntryForm = (data) => {
                 </div>
                 <div className="form-row">
                     <label>details:</label>
-                    <input
-                        type="text"
+                    <textarea
+                        type="text-box"
                         name="details"
                         value={formData.details}
                         onChange={handleChange}

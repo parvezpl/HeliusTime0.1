@@ -53,7 +53,7 @@ export function Website(props) {
                     <div>
                         <EntryForm sms={sms}/>
                     </div>
-                    <div>{fetchDetail}</div>
+                    <div className='fetchdetail'>{fetchDetail}</div>
                 </div>
             </div>
         </>

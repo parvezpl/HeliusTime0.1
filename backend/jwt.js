@@ -29,7 +29,6 @@ const jwtAuthMiddleware = (req, res, next) => {
     try {
         const tokenOnly= token.split(' ')[1]
         const decoded = jwt.verify(tokenOnly, process.env.JWT_SECRET); 
-        console.log("32"  ,decoded)
         req.user = decoded; 
         next(); 
     } catch (error) {
