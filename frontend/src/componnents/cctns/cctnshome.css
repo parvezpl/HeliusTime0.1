@@ -1,0 +1,22 @@
+.form {
+
+}
+
+.form div:nth-child(1){
+  justify-content: center;
+}
+
+.button {
+  display: flex;
+}
+
+.button-label {
+  width: auto;
+  color: #000;
+
+}
+
+.input-label{
+  width: -webkit-fill-available;
+  -webkit-text-fill-color: rgb(61, 55, 55);
+}

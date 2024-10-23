@@ -1,44 +1,43 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-
 const API_URL = import.meta.env.VITE_API_URL // IF LOCAL HOST THEN localhost:3000 and if deploy then heliustimebachend.onrender.com
 
 const token = Cookies.get("token")
 
 
 export const tokenverifie = async () => {
-  try {
-    const response = await axios.get(`${API_URL}/api/token`
+
+    const responece=await axios.get(`${API_URL}/api/token`
       , {
         headers: {
           Authorization: `Bearer ${token}`, // Sending the token in the Authorization header
         }
       }
     ).then((res) => {
-      localStorage.setItem('islogin',true)
+      // localStorage.setItem("user", res.data?.name)
+      console.log(res.data)
       return res.data
     })
-    return response
-    // console.log("test", response)
-    return response;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error; // Rethrow the error for further handling
-  }
-
+    .catch((err)=>{
+      return "server problem or internet not connected"
+    })
+    return responece
 }
 
 
 export const userLogin = async (formData) => {
   try {
     const response = await axios.post(`${API_URL}/api/userlogin`, { username: formData.contact, password: formData.password }); // Replace with your endpoint
-    Cookies.set('token', response.data.token, { expires: 7 });
-    localStorage.setItem('islogin',true)
-    return response.data;
+    if (response){
+      Cookies.set('token', response.data.token, { expires: 7 });
+      console.log(response)
+      localStorage.setItem('islogin', true)
+      localStorage.setItem("user", response?.data.payload.name)
+      return response?.data;
+    }
   } catch (error) {
     console.error('Error fetching data problem in apicall user login');
-    throw error; // Rethrow the error for further handling
   }
 }
 
@@ -49,6 +48,7 @@ export const logout = async () => {
       Cookies.remove("token")
       localStorage.removeItem("user")
       localStorage.removeItem('islogin')
+      localStorage.removeItem('linkId')
       return res.data
     })
     return response;
@@ -67,7 +67,7 @@ export const createAccount = async (data) => {
     console.log(response.data.newUser.name)
     // Cookies.set('token', response.data, { expires: 7 });
     localStorage.setItem("user", response.data.newUser.name)
-    localStorage.setItem('islogin',true)
+    localStorage.setItem('islogin', true)
     return response.data;
   } catch (error) {
     console.error('Error fetching data problem in apicall user login');
@@ -96,9 +96,9 @@ export const weblinksData = async () => {
 export const createWeblinksData = async (data) => {
   try {
     const response = await axios.post(`${API_URL}/api/weblinks`, data) // Replace with your endpoint
-    .then((res=>{
-      return res.data
-    }))
+      .then((res => {
+        return res.data
+      }))
 
     return response;
   } catch (error) {
@@ -113,7 +113,7 @@ export const deleteWeblinksData = async (userId) => {
       , {
         headers: {
           Authorization: `Bearer ${token}`, // Sending the token in the Authorization header
-        }, 
+        },
       }
     ).then((res) => {
       return res.data
@@ -162,13 +162,13 @@ export const getUserData = async (userId) => {
   }
 }
 
-export const getUserDataUpdate = async (userId,data) => {
+export const getUserDataUpdate = async (userId, data) => {
   try {
     const response = await axios.put(`${API_URL}/api/getuserdata/${userId}`
       , {
         headers: {
           Authorization: `Bearer ${token}`, // Sending the token in the Authorization header
-        }, 
+        },
         data
       }
     ).then((res) => {
@@ -187,7 +187,7 @@ export const deleteUserData = async (userId) => {
       , {
         headers: {
           Authorization: `Bearer ${token}`, // Sending the token in the Authorization header
-        }, 
+        },
       }
     ).then((res) => {
       return res.data

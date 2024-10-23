@@ -19,6 +19,7 @@ import Settings from './componnents/adminpanel/Settings.jsx'
 import { Otherwork } from './componnents/pages/worksComp/otherwork/otherwork.jsx'
 import AdmninProtectedRoute from './protectedRoute/adminProtect.jsx'
 import UserDetail from './componnents/adminpanel/UserDetail.jsx'
+import { CCTNSHome } from './componnents/cctns/cctnsHome.jsx'
 
 
 
@@ -34,6 +35,7 @@ const router = createBrowserRouter(
         </AdmninProtectedRoute>
       }>
 
+        <Route path="cctnshome" element={<CCTNSHome />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="users" element={<Users />} />
         <Route path="settings" element={<Settings />} />

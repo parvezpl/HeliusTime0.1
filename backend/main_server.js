@@ -8,6 +8,7 @@ const postRouter = require('./routs/postrouts');
 const getRouter = require('./routs/getrouts');
 const userRouter = require('./routs/userRout');
 const getRout = require('./routs/getRout');
+const cctnsRout = require('./routs/cctnsRout');
 
 const db = require('./db');
 const cors = require("cors");
@@ -45,7 +46,7 @@ app.use('/api', postRouter)
 app.use('/api', getRouter)
 app.use('/api', getRout)
 app.use('/api', userRouter)
-
+app.use('/api', cctnsRout)
 
 app.get('/api', (req, res) => {
   res.json("this is home page")

@@ -41,7 +41,7 @@ const Users = () => {
     <div className="page-content" >
       <ul className="contact-list">
         <div style={{"height":"10px", "color":"white"}}>{sms}</div>
-        {contacts.map((contact, index) => (
+        {contacts?.map((contact, index) => (
 
           <li key={index} className="contact-item"
 

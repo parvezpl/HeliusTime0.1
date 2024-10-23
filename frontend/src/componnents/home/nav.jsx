@@ -3,7 +3,6 @@ import "./nav.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { loginFunc } from '../../reduxx/slices';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { logout } from '../../api/apiCall';
 
 export function Nav() {
@@ -53,6 +52,7 @@ export function Nav() {
                         style={{display: optionStatus ? "none" : "flex"}}
                         >
                             {islogin && <Link className='navi-option-link' to={'/admin'}>Admin</Link>}
+                            <Link className='navi-option-link' to={'/admin/cctnshome'}>CCTNS</Link>
                             <Link className='navi-option-link' to={'/'}>home</Link>
                             <Link className='navi-option-link' to={'/logindetail'}>about</Link>
                             <Link className='navi-option-link'>service</Link>

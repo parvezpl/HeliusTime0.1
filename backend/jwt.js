@@ -13,27 +13,34 @@ const jwtAuthMiddleware = (req, res, next) => {
     // console.log(tokenData)
     // if (!tokenData) return res.status(401).json({ error:'not token' });
     // const token = tokenData.split("=")[1]
-    if(req.headers['authorization']?.split(' ')[1]) {
-        token = req.headers['authorization']?.split(' ')[1];
-    } else{
-        token= req.cookies.token
+
+    // if(req.headers['authorization']?.split(' ')[1]) {
+    //     token = req.headers['authorization']?.split(' ')[1];
+    // } else{
+    //     token= req.cookies.token
+    // }
+
+
+    const token = req.headers['authorization'];
+    
+    if (!token) {
+        return res.status(403).json({ message: 'Access denied. No token provided.' });
     }
-
-    if (!token) return res.status(401).json({ error:'Unauthorized not send token like that' });
-
     try {
-        const decoded= jwt.verify(token,process.env.JWT_SECRET);
-        req.user = decoded
-        
-        next();
+        const tokenOnly= token.split(' ')[1]
+        const decoded = jwt.verify(tokenOnly, process.env.JWT_SECRET); 
+        console.log("32"  ,decoded)
+        req.user = decoded; 
+        next(); 
     } catch (error) {
-        res.status(401).json({error:'invalid_token'});
+        return res.json({massage:"token middleware reject"})
     }
+
 }
 
 
-const generateToken =(id)=>{
-    return jwt.sign({...id}, process.env.JWT_SECRET, {expiresIn:300000})
+const generateToken = (id) => {
+    return jwt.sign({ ...id }, process.env.JWT_SECRET, { expiresIn: 300000 })
 }
 
-module.exports ={jwtAuthMiddleware, generateToken}
+module.exports = { jwtAuthMiddleware, generateToken }

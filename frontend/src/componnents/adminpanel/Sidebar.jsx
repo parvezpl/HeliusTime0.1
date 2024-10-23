@@ -7,9 +7,9 @@ const Sidebar = () => {
     <div className="sidebar">
       <h2>Admin Panel</h2>
       <ul>
-        <li><Link to="/admin/dashboard">Dashboard</Link></li>
-        <li><Link to="/admin/users">Users</Link></li>
-        <li><Link to="/admin/settings">Settings</Link></li>
+        <Link className='sidebar-link' to="/admin/dashboard">Dashboard</Link>
+        <Link className='sidebar-link' to="/admin/users">Users</Link>
+        <Link className='sidebar-link' to="/admin/settings">Settings</Link>
       </ul>
     </div>
   );

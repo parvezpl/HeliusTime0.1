@@ -21,7 +21,7 @@ userRouter.post('/createAccount', async (req, res)=>{
     } catch (error) {
         res.json({"not gen":error})
     }
-})
+}) 
 
 
 userRouter.post('/userlogin', async (req, res) => {
@@ -100,10 +100,11 @@ userRouter.delete('/getuserdata/:id',jwtAuthMiddleware, async (req, res) => {
 });
 
 
-userRouter.get('/token', jwtAuthMiddleware, async (req, res) => {
-    const token = req.headers['authorization']?.split(' ')[1]; 
+userRouter.get('/token',jwtAuthMiddleware, async (req, res) => {
+    // const token = req.headers['authorization']?.split(' ')[1]; 
     const name = req.user.name
-    res.json({name, token, islogin:true} )
+    console.log("name",name)
+    res.json(name)
 })
 
 

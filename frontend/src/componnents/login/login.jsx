@@ -25,11 +25,9 @@ export function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         setLoding(true)
-        await userLogin(formData)
+        userLogin(formData)
             .then(async (res) => {
-                console.log("login", res.payload.name)
-                const username = res.payload.name
-                localStorage.setItem("user", username)
+                console.log("login")
                 dispatch(loginFunc(true))
                 navigate('/')
                 setLoding(false)

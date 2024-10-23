@@ -1,8 +1,14 @@
-.sidebar ul li {
+.sidebar ul .sidebar-link {
     padding: 10px 0;
+    text-decoration: none;
+    color: rgb(224, 224, 224);
   }
   
-  .sidebar ul li:hover {
+  .sidebar ul .sidebar-link:hover {
     background-color: #34495e;
   }
   
+  .sidebar ul {
+    display: flex;
+    flex-direction: column;
+  }
